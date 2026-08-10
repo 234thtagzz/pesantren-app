@@ -3,6 +3,7 @@ import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
+import { ScrollProgress } from "@/components/ui/scroll-progress";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -53,6 +54,7 @@ export default function RootLayout({
       className={`${inter.variable} ${plusJakarta.variable} font-sans scroll-smooth h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-slate-50 text-slate-900 selection:bg-amber-400 selection:text-emerald-950">
+        <ScrollProgress />
         <Navbar />
         <div className="flex-1">{children}</div>
         <Footer />

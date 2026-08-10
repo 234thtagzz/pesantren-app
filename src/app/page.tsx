@@ -6,6 +6,7 @@ import { FasilitasSection } from "@/components/home/fasilitas-section";
 import { AgendaSection } from "@/components/home/agenda-section";
 import { TestimoniSection } from "@/components/home/testimoni-section";
 import { PsbBanner } from "@/components/home/psb-banner";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
 export const metadata = {
   title: "Pondok Pesantren Al-Fattah Kartasura | Profile, Pengajian Kitab & PSB 2026/2027",
@@ -14,15 +15,36 @@ export const metadata = {
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-slate-50">
+    <main className="min-h-screen bg-slate-50 overflow-x-hidden">
       <HeroSection />
-      <PengasuhSection />
-      <ProgramSection />
-      <KitabSection />
-      <FasilitasSection />
-      <AgendaSection />
-      <TestimoniSection />
-      <PsbBanner />
+
+      <ScrollReveal direction="up" delay={100}>
+        <PengasuhSection />
+      </ScrollReveal>
+
+      <ScrollReveal direction="up" delay={100}>
+        <ProgramSection />
+      </ScrollReveal>
+
+      <ScrollReveal direction="up" delay={100}>
+        <KitabSection />
+      </ScrollReveal>
+
+      <ScrollReveal direction="up" delay={100}>
+        <FasilitasSection />
+      </ScrollReveal>
+
+      <ScrollReveal direction="up" delay={100}>
+        <AgendaSection />
+      </ScrollReveal>
+
+      <ScrollReveal direction="up" delay={100}>
+        <TestimoniSection />
+      </ScrollReveal>
+
+      <ScrollReveal direction="up" delay={100}>
+        <PsbBanner />
+      </ScrollReveal>
     </main>
   );
 }
