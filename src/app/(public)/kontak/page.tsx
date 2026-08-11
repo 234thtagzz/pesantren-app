@@ -91,7 +91,7 @@ export default function KontakPage() {
                   <div>
                     <div className="font-bold text-slate-900">Email & Media Sosial</div>
                     <p className="text-slate-600 text-xs mt-0.5">
-                      Email: info@alfattah.or.id<br />
+                      Email: ponpesalfattahkts@gmail.com<br />
                       Instagram: <strong>@ponpes_alfattah</strong>
                     </p>
                   </div>
