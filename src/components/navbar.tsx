@@ -22,7 +22,7 @@ const navLinks = [
   { href: "/program", label: "Program & Kitab" },
   { href: "/fasilitas", label: "Fasilitas" },
   { href: "/berita", label: "Berita & Kegiatan" },
-  { href: "/psb", label: "PSB 2026/2027", badge: "Buka" },
+  { href: "/psb", label: "PSB 2026/2027" },
   { href: "/kontak", label: "Kontak & Lokasi" },
 ];
 
@@ -44,7 +44,7 @@ export function Navbar() {
           </div>
           <div className="flex items-center gap-4 font-medium">
             <a 
-              href="https://wa.me/6285728004560" 
+              href="https://wa.me/62882006454771" 
               target="_blank" 
               rel="noreferrer"
               className="flex items-center gap-1 hover:text-amber-300 transition-colors"
@@ -117,9 +117,9 @@ export function Navbar() {
               variant="outline"
               className="border-emerald-700/30 text-emerald-800 hover:bg-emerald-50 font-semibold"
             >
-              <a href="https://wa.me/6285728004560" target="_blank" rel="noreferrer">
+              <a href="https://wa.me/62882006454771" target="_blank" rel="noreferrer">
                 <PhoneCall className="w-4 h-4 mr-1.5 text-emerald-600" />
-                Konsultasi WA
+                Konsultasi
               </a>
             </Button>
             <Button
@@ -128,7 +128,7 @@ export function Navbar() {
             >
               <Link href="/psb">
                 <UserCheck className="w-4 h-4 mr-1.5 text-amber-400" />
-                Daftar PSB Online
+                Daftar PSB
               </Link>
             </Button>
           </div>
@@ -181,7 +181,7 @@ export function Navbar() {
               >
                 <Link href="/psb" onClick={() => setMobileMenuOpen(false)}>
                   <GraduationCap className="w-5 h-5 mr-2 text-amber-400" />
-                  Daftar PSB Online 2026/2027
+                  Daftar PSB
                 </Link>
               </Button>
               <Button
@@ -189,7 +189,7 @@ export function Navbar() {
                 variant="outline"
                 className="w-full justify-center border-slate-300 text-slate-800 py-5 text-base font-semibold"
               >
-                <a href="https://wa.me/6285728004560" target="_blank" rel="noreferrer">
+                <a href="https://wa.me/62882006454771" target="_blank" rel="noreferrer">
                   <PhoneCall className="w-4 h-4 mr-2 text-emerald-600" />
                   Hubungi Panitia PSB
                 </a>

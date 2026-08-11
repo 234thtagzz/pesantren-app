@@ -117,7 +117,7 @@ export default function KontakPage() {
                   className="w-full bg-emerald-800 hover:bg-emerald-900 text-white font-extrabold py-5 rounded-xl"
                 >
                   <a 
-                    href="https://wa.me/6285728004560?text=Assalamu'alaikum%20Sekretariat%20Pesantren%20Al-Fattah%20Kartasura" 
+                    href="https://wa.me/62882006454771?text=Assalamu'alaikum%20Sekretariat%20Pesantren%20Al-Fattah%20Kartasura" 
                     target="_blank" 
                     rel="noreferrer"
                   >

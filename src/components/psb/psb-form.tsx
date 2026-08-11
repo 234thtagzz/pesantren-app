@@ -103,7 +103,7 @@ Mohon informasi langkah verifikasi berkas selanjutnya. Terima kasih.`;
               className="bg-emerald-800 hover:bg-emerald-900 text-white font-extrabold px-6 py-6"
             >
               <a 
-                href={`https://wa.me/6285728004560?text=${getWaMessage()}`} 
+                href={`https://wa.me/62882006454771?text=${getWaMessage()}`} 
                 target="_blank" 
                 rel="noreferrer"
               >

@@ -37,7 +37,7 @@ export function PsbBanner() {
               size="lg"
               className="border-emerald-700 text-white hover:bg-emerald-900 font-semibold px-6 py-6 text-base"
             >
-              <a href="https://wa.me/6285728004560" target="_blank" rel="noreferrer">
+              <a href="https://wa.me/62882006454771" target="_blank" rel="noreferrer">
                 <PhoneCall className="w-4 h-4 mr-2 text-amber-400" />
                 Konsultasi Pendaftaran
               </a>
