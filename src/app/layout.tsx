@@ -53,7 +53,7 @@ export default function RootLayout({
       lang="id"
       className={`${inter.variable} ${plusJakarta.variable} font-sans scroll-smooth h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-slate-50 text-slate-900 selection:bg-amber-400 selection:text-primary-10">
+      <body className="min-h-full flex flex-col bg-slate-50 text-slate-900 selection:bg-amber-400 selection:text-primary-10 max-w-full">
         <ScrollProgress />
         <Navbar />
         <div className="flex-1">{children}</div>

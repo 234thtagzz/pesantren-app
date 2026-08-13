@@ -12,7 +12,7 @@ import {
 
 export function Footer() {
   return (
-    <footer className="bg-primary-10 text-slate-300 border-t border-primary-9/60 pt-16 pb-12 relative overflow-hidden">
+    <footer className="bg-primary-10 text-slate-300 border-t border-primary-9/60 pt-16 pb-12 px-5 relative overflow-hidden">
       {/* Decorative Glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-24 bg-primary-5/10 blur-3xl pointer-events-none" />
 

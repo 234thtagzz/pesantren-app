@@ -31,7 +31,7 @@ export default function AdminLoginPage() {
 
       if (data.session) {
         // Berhasil login, arahkan ke halaman admin PSB
-        router.push("/admin/psb");
+        router.push("/admin");
         router.refresh();
       }
     } catch (err: any) {

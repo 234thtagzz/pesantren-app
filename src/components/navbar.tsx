@@ -34,7 +34,7 @@ export function Navbar() {
   return (
     <>
       {/* Top Banner Announcement */}
-      <div className="bg-primary-10 text-primary-1 text-xs sm:text-sm py-2 px-4 border-b border-primary-8/40">
+      <div className="bg-emerald-950 text-primary-1 text-xs sm:text-sm py-2 px-4 border-b border-emerald-800/40">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
           <div className="flex items-center gap-2">
             <span className="inline-flex items-center gap-1.5 bg-amber-500/20 text-amber-300 font-semibold px-2.5 py-0.5 rounded-full text-xs border border-amber-500/30">
@@ -74,7 +74,7 @@ export function Navbar() {
             </div>
             <div>
               <div className="flex items-center gap-1.5">
-                <span className="font-extrabold text-xl text-primary-10 tracking-tight leading-none group-hover:text-primary-7 transition-colors whitespace-nowrap">
+                <span className="font-extrabold text-xl text-emerald-950 tracking-tight leading-none group-hover:text-primary-7 transition-colors whitespace-nowrap">
                   AL-FATTAH
                 </span>
                 <span className="text-[10px] bg-amber-100 text-amber-900 px-1.5 py-0.5 rounded font-semibold uppercase tracking-wider border border-amber-300">
@@ -97,8 +97,8 @@ export function Navbar() {
                   href={link.href}
                   className={`relative px-3.5 py-2 rounded-lg text-sm font-semibold transition-all flex items-center gap-1.5 ${
                     isActive
-                      ? "text-primary-8 bg-emerald-50/80 font-bold"
-                      : "text-slate-600 hover:text-primary-8 hover:bg-slate-50"
+                      ? "text-emerald-800 bg-emerald-50/80 font-bold"
+                      : "text-slate-600 hover:text-emerald-800 hover:bg-slate-50"
                   }`}
                 >
                   {link.label}
@@ -108,7 +108,7 @@ export function Navbar() {
                     </span>
                   )}
                   {isActive && (
-                    <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-primary-6 rounded-full" />
+                    <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-emerald-600 rounded-full" />
                   )}
                 </Link>
               );
@@ -120,16 +120,16 @@ export function Navbar() {
             <Button
               asChild
               variant="outline"
-              className="border-primary-7/30 text-primary-8 hover:bg-emerald-50 font-semibold"
+              className="border-primary-7/30 text-emerald-800 hover:bg-emerald-50 font-semibold"
             >
               <a href="https://wa.me/62882006454771" target="_blank" rel="noreferrer">
-                <PhoneCall className="w-4 h-4 mr-1.5 text-primary-6" />
+                <PhoneCall className="w-4 h-4 mr-1.5 text-emerald-600" />
                 Konsultasi
               </a>
             </Button>
             <Button
               asChild
-              className="bg-gradient-to-r from-primary-8 to-primary-10 hover:from-primary-9 hover:to-black text-white shadow-md shadow-primary-9/20 font-bold"
+              className="bg-gradient-to-r from-emerald-800 to-emerald-950 hover:from-emerald-900 hover:to-black text-white shadow-md shadow-emerald-900/20 font-bold"
             >
               <Link href="/psb">
                 <UserCheck className="w-4 h-4 mr-1.5 text-amber-400" />
@@ -160,15 +160,15 @@ export function Navbar() {
                   onClick={() => setMobileMenuOpen(false)}
                   className={`flex items-center justify-between px-4 py-3 rounded-xl text-base font-semibold transition-all ${
                     isActive
-                      ? "bg-primary-8 text-white shadow-sm"
-                      : "text-slate-700 hover:bg-emerald-50 hover:text-primary-8"
+                      ? "bg-emerald-800 text-white shadow-sm"
+                      : "text-slate-700 hover:bg-emerald-50 hover:text-emerald-800"
                   }`}
                 >
                   <span className="flex items-center gap-2">
                     {link.label}
                     {link.badge && (
                       <span className={`text-xs px-2 py-0.5 rounded-full font-bold ${
-                        isActive ? "bg-amber-400 text-primary-10" : "bg-amber-500 text-white"
+                        isActive ? "bg-amber-400 text-emerald-950" : "bg-amber-500 text-white"
                       }`}>
                         {link.badge}
                       </span>
@@ -182,7 +182,7 @@ export function Navbar() {
             <div className="pt-4 space-y-2.5 border-t border-slate-100 mt-2">
               <Button
                 asChild
-                className="w-full justify-center bg-primary-8 hover:bg-primary-9 text-white font-bold py-6 text-base shadow-md"
+                className="w-full justify-center bg-emerald-800 hover:bg-emerald-900 text-white font-bold py-6 text-base shadow-md"
               >
                 <Link href="/psb" onClick={() => setMobileMenuOpen(false)}>
                   <GraduationCap className="w-5 h-5 mr-2 text-amber-400" />
@@ -195,7 +195,7 @@ export function Navbar() {
                 className="w-full justify-center border-slate-300 text-slate-800 py-5 text-base font-semibold"
               >
                 <a href="https://wa.me/62882006454771" target="_blank" rel="noreferrer">
-                  <PhoneCall className="w-4 h-4 mr-2 text-primary-6" />
+                  <PhoneCall className="w-4 h-4 mr-2 text-emerald-600" />
                   Hubungi Panitia PSB
                 </a>
               </Button>
