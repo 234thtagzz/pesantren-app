@@ -39,7 +39,7 @@ export function ScrollProgress() {
       {/* Top Reading Progress Bar */}
       <div className="fixed top-0 left-0 right-0 h-1 bg-transparent z-[60] pointer-events-none">
         <div
-          className="h-full bg-gradient-to-r from-amber-400 via-emerald-400 to-amber-300 transition-all duration-150 ease-out shadow-sm"
+          className="h-full bg-gradient-to-r from-amber-400 via-primary-4 to-amber-300 transition-all duration-150 ease-out shadow-sm"
           style={{ width: `${scrollProgress}%` }}
         />
       </div>
@@ -48,9 +48,9 @@ export function ScrollProgress() {
       <button
         onClick={scrollToTop}
         aria-label="Kembali ke atas"
-        className={`fixed bottom-6 right-6 z-50 w-12 h-12 rounded-2xl bg-emerald-950/90 text-amber-300 border border-amber-400/40 shadow-2xl flex items-center justify-center backdrop-blur-md transition-all duration-300 cursor-pointer ${
+        className={`fixed bottom-6 right-6 z-50 w-12 h-12 rounded-2xl bg-primary-10/90 text-amber-300 border border-amber-400/40 shadow-2xl flex items-center justify-center backdrop-blur-md transition-all duration-300 cursor-pointer ${
           showBackToTop
-            ? "opacity-100 translate-y-0 hover:bg-emerald-900 hover:scale-110 hover:border-amber-300"
+            ? "opacity-100 translate-y-0 hover:bg-primary-9 hover:scale-110 hover:border-amber-300"
             : "opacity-0 translate-y-10 pointer-events-none"
         }`}
       >

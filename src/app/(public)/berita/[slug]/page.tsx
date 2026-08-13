@@ -80,14 +80,14 @@ export default async function BeritaDetailPage({ params }: { params: Promise<{ s
   return (
     <main className="min-h-screen bg-slate-50 pb-20">
       {/* Header Banner */}
-      <section className="relative bg-emerald-950 text-white py-16 px-4 sm:px-6 lg:px-8 text-center overflow-hidden">
+      <section className="relative bg-primary-10 text-white py-16 px-4 sm:px-6 lg:px-8 text-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image src={article.image} alt={article.title} fill className="object-cover opacity-20" />
-          <div className="absolute inset-0 bg-gradient-to-b from-emerald-950/80 via-emerald-950 to-emerald-950" />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary-10/80 via-primary-10 to-primary-10" />
         </div>
 
         <div className="max-w-4xl mx-auto relative z-10 space-y-4">
-          <Link href="/berita" className="inline-flex items-center gap-1.5 text-amber-400 hover:text-amber-300 font-semibold text-xs bg-emerald-900 px-3.5 py-1 rounded-full border border-emerald-700">
+          <Link href="/berita" className="inline-flex items-center gap-1.5 text-amber-400 hover:text-amber-300 font-semibold text-xs bg-primary-9 px-3.5 py-1 rounded-full border border-primary-7">
             <ArrowLeft className="w-4 h-4" />
             Kembali ke Daftar Berita
           </Link>
@@ -100,7 +100,7 @@ export default async function BeritaDetailPage({ params }: { params: Promise<{ s
               {article.date}
             </span>
             <span className="flex items-center gap-1">
-              <User className="w-3.5 h-3.5 text-emerald-400" />
+              <User className="w-3.5 h-3.5 text-primary-4" />
               {article.author}
             </span>
           </div>
@@ -125,7 +125,7 @@ export default async function BeritaDetailPage({ params }: { params: Promise<{ s
               <Tag className="w-4 h-4 text-amber-600" />
               <span className="text-xs font-bold text-slate-600">Kategori: {article.category}</span>
             </div>
-            <Button asChild className="bg-emerald-900 hover:bg-emerald-950 text-white font-bold">
+            <Button asChild className="bg-primary-9 hover:bg-primary-10 text-white font-bold">
               <Link href="/psb">
                 Informasi Pendaftaran PSB 2026/2027
               </Link>

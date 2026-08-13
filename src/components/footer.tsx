@@ -1,6 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
 import { 
-  BookOpen, 
   MapPin, 
   Phone, 
   Mail, 
@@ -12,18 +12,24 @@ import {
 
 export function Footer() {
   return (
-    <footer className="bg-emerald-950 text-slate-300 border-t border-emerald-900/60 pt-16 pb-12 relative overflow-hidden">
+    <footer className="bg-primary-10 text-slate-300 border-t border-primary-9/60 pt-16 pb-12 relative overflow-hidden">
       {/* Decorative Glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-24 bg-emerald-500/10 blur-3xl pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-24 bg-primary-5/10 blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-emerald-900/80">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-primary-9/80">
           
           {/* Col 1: Brand & Bio */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-11 h-11 rounded-xl bg-emerald-800 flex items-center justify-center text-amber-400 border border-amber-500/40 shadow-inner">
-                <BookOpen className="w-6 h-6" />
+              <div className="w-12 h-12 shrink-0 group-hover:scale-105 transition-transform">
+                <Image
+                  src="/images/logo.png"
+                  alt="Al-Fattah logo"
+                  width={48}
+                  height={48}
+                  className="rounded-lg object-cover"
+                />
               </div>
               <div>
                 <h3 className="font-bold text-xl text-white tracking-tight">
@@ -40,11 +46,11 @@ export function Footer() {
             </p>
 
             <div className="flex flex-wrap items-center gap-2 pt-1">
-              <span className="inline-flex items-center gap-1.5 bg-emerald-900/80 border border-emerald-700/50 text-emerald-300 text-xs px-3 py-1.5 rounded-lg font-semibold">
+              <span className="inline-flex items-center gap-1.5 bg-primary-9/80 border border-primary-7/50 text-primary-3 text-xs px-3 py-1.5 rounded-lg font-semibold">
                 <Award className="w-4 h-4 text-amber-400" />
                 Yayasan Berdiri Maret 2007
               </span>
-              <span className="inline-flex items-center gap-1.5 bg-emerald-900/80 border border-emerald-700/50 text-emerald-300 text-xs px-3 py-1.5 rounded-lg font-semibold">
+              <span className="inline-flex items-center gap-1.5 bg-primary-9/80 border border-primary-7/50 text-primary-3 text-xs px-3 py-1.5 rounded-lg font-semibold">
                 Pesantren Beroperasi Agt 2007
               </span>
             </div>
@@ -55,7 +61,7 @@ export function Footer() {
                 href="https://instagram.com/ponpes_alfattah" 
                 target="_blank" 
                 rel="noreferrer"
-                className="w-9 h-9 rounded-lg bg-emerald-900/60 hover:bg-amber-500 hover:text-emerald-950 text-slate-300 flex items-center justify-center transition-all"
+                className="w-9 h-9 rounded-lg bg-primary-9/60 hover:bg-amber-500 hover:text-primary-10 text-slate-300 flex items-center justify-center transition-all"
                 aria-label="Instagram @ponpes_alfattah"
               >
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -66,7 +72,7 @@ export function Footer() {
                 href="https://wa.me/62882006454771" 
                 target="_blank" 
                 rel="noreferrer"
-                className="w-9 h-9 rounded-lg bg-emerald-900/60 hover:bg-amber-500 hover:text-emerald-950 text-slate-300 flex items-center justify-center transition-all"
+                className="w-9 h-9 rounded-lg bg-primary-9/60 hover:bg-amber-500 hover:text-primary-10 text-slate-300 flex items-center justify-center transition-all"
                 aria-label="WhatsApp Hotline"
               >
                 <Phone className="w-4 h-4" />
@@ -76,7 +82,7 @@ export function Footer() {
 
           {/* Col 2: Navigation Links */}
           <div className="space-y-3">
-            <h4 className="text-white font-bold text-base tracking-wide border-b border-emerald-800 pb-2 inline-block">
+            <h4 className="text-white font-bold text-base tracking-wide border-b border-primary-8 pb-2 inline-block">
               Tautan Utama
             </h4>
             <ul className="space-y-2.5 text-sm">
@@ -94,7 +100,7 @@ export function Footer() {
                     href={item.href} 
                     className="text-slate-400 hover:text-amber-300 transition-colors flex items-center gap-1.5 group"
                   >
-                    <ArrowRight className="w-3.5 h-3.5 text-emerald-600 group-hover:text-amber-400 group-hover:translate-x-0.5 transition-all" />
+                    <ArrowRight className="w-3.5 h-3.5 text-primary-6 group-hover:text-amber-400 group-hover:translate-x-0.5 transition-all" />
                     {item.label}
                   </Link>
                 </li>
@@ -104,7 +110,7 @@ export function Footer() {
 
           {/* Col 3: Programs & Facilities */}
           <div className="space-y-3">
-            <h4 className="text-white font-bold text-base tracking-wide border-b border-emerald-800 pb-2 inline-block">
+            <h4 className="text-white font-bold text-base tracking-wide border-b border-primary-8 pb-2 inline-block">
               Kajian Kitab Kuning
             </h4>
             <ul className="space-y-2.5 text-sm text-slate-400">
@@ -137,7 +143,7 @@ export function Footer() {
 
           {/* Col 4: Contact & Location */}
           <div className="space-y-3">
-            <h4 className="text-white font-bold text-base tracking-wide border-b border-emerald-800 pb-2 inline-block">
+            <h4 className="text-white font-bold text-base tracking-wide border-b border-primary-8 pb-2 inline-block">
               Alamat & Sekretariat
             </h4>
             <ul className="space-y-3 text-sm text-slate-400">

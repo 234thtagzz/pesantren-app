@@ -44,7 +44,7 @@ const programs = [
       "Pengajaran Langsung oleh Pengasuh & Asatidzh"
     ],
     highlight: "Pendalaman Syariat & Adab",
-    color: "from-emerald-800 to-emerald-950"
+    color: "from-primary-8 to-primary-10"
   },
   {
     id: "pesantren-mahasiswa",
@@ -76,7 +76,7 @@ const programs = [
       "Sertifikat Kelulusan Hafalan Pesantren"
     ],
     highlight: "Bimbingan Tahfizh",
-    color: "from-emerald-900 to-teal-950"
+    color: "from-primary-9 to-teal-950"
   },
   {
     id: "madin-kegiatan",
@@ -103,11 +103,11 @@ export function ProgramSection() {
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <span className="text-emerald-700 font-bold text-sm tracking-wider uppercase bg-emerald-50 px-3.5 py-1.5 rounded-full border border-emerald-200 inline-flex items-center gap-1.5">
+          <span className="text-primary-7 font-bold text-sm tracking-wider uppercase bg-emerald-50 px-3.5 py-1.5 rounded-full border border-primary-2 inline-flex items-center gap-1.5">
             <Sparkles className="w-4 h-4 text-amber-500" />
             Kurikulum & Program Pendidikan
           </span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-emerald-950 tracking-tight">
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-primary-10 tracking-tight">
             Program Kajian Kitab & Pesantren Mahasiswa
           </h2>
           <p className="text-slate-600 text-base sm:text-lg">
@@ -134,7 +134,7 @@ export function ProgramSection() {
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
-                    <span className="absolute top-4 left-4 bg-emerald-800 text-amber-300 font-bold text-xs px-3 py-1 rounded-full border border-amber-400/30">
+                    <span className="absolute top-4 left-4 bg-primary-8 text-amber-300 font-bold text-xs px-3 py-1 rounded-full border border-amber-400/30">
                       {program.highlight}
                     </span>
                   </div>
@@ -142,11 +142,11 @@ export function ProgramSection() {
                   {/* Body Content */}
                   <div className="p-6 space-y-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-emerald-900 text-amber-400 flex items-center justify-center shrink-0">
+                      <div className="w-10 h-10 rounded-xl bg-primary-9 text-amber-400 flex items-center justify-center shrink-0">
                         <Icon className="w-5 h-5" />
                       </div>
                       <div>
-                        <h3 className="font-extrabold text-lg text-emerald-950 leading-snug">
+                        <h3 className="font-extrabold text-lg text-primary-10 leading-snug">
                           {program.title}
                         </h3>
                         <p className="text-xs text-amber-700 font-semibold">{program.subtitle}</p>
@@ -160,7 +160,7 @@ export function ProgramSection() {
                     <ul className="space-y-2 pt-2 border-t border-slate-200">
                       {program.features.map((feat, idx) => (
                         <li key={idx} className="flex items-start gap-2 text-xs font-medium text-slate-700">
-                          <CheckCircle className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                          <CheckCircle className="w-3.5 h-3.5 text-primary-6 shrink-0 mt-0.5" />
                           <span>{feat}</span>
                         </li>
                       ))}
@@ -172,7 +172,7 @@ export function ProgramSection() {
                   <Button
                     asChild
                     variant="outline"
-                    className="w-full justify-between border-slate-300 text-emerald-900 hover:bg-emerald-800 hover:text-white font-bold transition-all"
+                    className="w-full justify-between border-slate-300 text-primary-9 hover:bg-primary-8 hover:text-white font-bold transition-all"
                   >
                     <Link href={`/program#${program.id}`}>
                       Detail Program & Silabus
@@ -192,7 +192,7 @@ export function ProgramSection() {
             return (
               <div 
                 key={program.id}
-                className="bg-emerald-950 text-white rounded-3xl border border-emerald-900 overflow-hidden shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 grid grid-cols-1 sm:grid-cols-12 group"
+                className="bg-primary-10 text-white rounded-3xl border border-primary-9 overflow-hidden shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 grid grid-cols-1 sm:grid-cols-12 group"
               >
                 <div className="relative sm:col-span-5 min-h-[220px] sm:min-h-full">
                   <Image
@@ -201,8 +201,8 @@ export function ProgramSection() {
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-emerald-950/40" />
-                  <span className="absolute top-4 left-4 bg-amber-500 text-emerald-950 font-bold text-xs px-3 py-1 rounded-full">
+                  <div className="absolute inset-0 bg-primary-10/40" />
+                  <span className="absolute top-4 left-4 bg-amber-500 text-primary-10 font-bold text-xs px-3 py-1 rounded-full">
                     {program.highlight}
                   </span>
                 </div>
@@ -210,7 +210,7 @@ export function ProgramSection() {
                 <div className="sm:col-span-7 p-6 sm:p-8 flex flex-col justify-between space-y-4">
                   <div>
                     <div className="flex items-center gap-3 mb-2">
-                      <div className="w-10 h-10 rounded-xl bg-amber-400 text-emerald-950 flex items-center justify-center shrink-0">
+                      <div className="w-10 h-10 rounded-xl bg-amber-400 text-primary-10 flex items-center justify-center shrink-0">
                         <Icon className="w-5 h-5" />
                       </div>
                       <div>
@@ -238,7 +238,7 @@ export function ProgramSection() {
                   <div className="pt-2">
                     <Button
                       asChild
-                      className="bg-emerald-700 hover:bg-emerald-600 text-white font-bold w-full justify-between"
+                      className="bg-primary-7 hover:bg-primary-6 text-white font-bold w-full justify-between"
                     >
                       <Link href="/program">
                         Lihat Rincian Kegiatan & Jadwal
@@ -257,7 +257,7 @@ export function ProgramSection() {
           <Button
             asChild
             size="lg"
-            className="bg-emerald-950 hover:bg-emerald-900 text-white font-bold px-8 py-6 rounded-2xl shadow-lg"
+            className="bg-primary-10 hover:bg-primary-9 text-white font-bold px-8 py-6 rounded-2xl shadow-lg"
           >
             <Link href="/program">
               Lihat Daftar Kitab Kuning Lengkap & Jadwal Pengajian

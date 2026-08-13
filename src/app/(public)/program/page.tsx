@@ -1,14 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { 
-  BookOpen, 
-  GraduationCap, 
-  ScrollText, 
+import {  
   CheckCircle2, 
-  Award,
-  Sparkles,
   ArrowRight,
-  Bookmark
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -21,7 +15,7 @@ export default function ProgramPage() {
   return (
     <main className="min-h-screen bg-slate-50 pb-20">
       {/* Header Banner */}
-      <section className="relative bg-emerald-950 text-white py-20 px-4 sm:px-6 lg:px-8 text-center overflow-hidden">
+      <section className="relative bg-primary-10 text-white py-20 px-4 sm:px-6 lg:px-8 text-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/kitab_kuning_study.jpg"
@@ -29,18 +23,18 @@ export default function ProgramPage() {
             fill
             className="object-cover opacity-20"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-emerald-950/80 via-emerald-950 to-emerald-950" />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary-10/80 via-primary-10 to-primary-10" />
         </div>
 
         <div className="max-w-4xl mx-auto relative z-10 space-y-4">
-          <span className="text-amber-400 font-extrabold text-xs tracking-wider uppercase bg-emerald-900 px-3.5 py-1.5 rounded-full border border-amber-500/30">
+          <span className="inline-block text-amber-400 font-extrabold text-xs tracking-wider uppercase bg-primary-9 px-3.5 py-1.5 rounded-full border border-amber-500/30">
             Kurikulum Salaf-Modern
           </span>
           <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight">
             Program Pendidikan & Silabus Kitab Kuning
           </h1>
           <p className="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto">
-            Pendalaman ilmu agama Islam melalui tradisi kitab turats, hafalan Qur'an, dan pembinaan santri mahasiswa Krapyak.
+            Pendalaman ilmu agama Islam melalui tradisi kitab turats, hafalan Qur&apos;an, dan pembinaan santri mahasiswa Krapyak.
           </p>
         </div>
       </section>
@@ -53,7 +47,7 @@ export default function ProgramPage() {
             <span className="bg-amber-100 text-amber-900 font-bold text-xs px-3 py-1 rounded-full border border-amber-300">
               Gramatika Arab & Sorogan
             </span>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-emerald-950">
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-primary-10">
               Metode Amtsilati, Jurumiyah & Alfiyah Ibn Malik
             </h2>
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
@@ -84,15 +78,15 @@ export default function ProgramPage() {
         {/* 2. Pesantren Mahasiswa */}
         <section id="pesantren-mahasiswa" className="bg-white rounded-3xl p-8 sm:p-12 border border-slate-200 shadow-xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-6 order-2 lg:order-1">
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-emerald-600 aspect-[16/10]">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-primary-6 aspect-[16/10]">
               <Image src="/images/al_fattah_hero.jpg" alt="Pesantren Mahasiswa Krapyak" fill className="object-cover" />
             </div>
           </div>
           <div className="lg:col-span-6 order-1 lg:order-2 space-y-4">
-            <span className="bg-emerald-100 text-emerald-900 font-bold text-xs px-3 py-1 rounded-full border border-emerald-300">
+            <span className="bg-primary-1 text-primary-9 font-bold text-xs px-3 py-1 rounded-full border border-primary-3">
               Pesantren Mahasiswa
             </span>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-emerald-950">
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-primary-10">
               Program Santri Mahasiswa (Mukim & Kalong)
             </h2>
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
@@ -100,11 +94,11 @@ export default function ProgramPage() {
             </p>
             <div className="space-y-2 text-sm text-slate-700 font-medium">
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                <CheckCircle2 className="w-4 h-4 text-primary-6" />
                 <span>Jadwal Pengajian Disesuaikan Jam Kuliah Santri</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                <CheckCircle2 className="w-4 h-4 text-primary-6" />
                 <span>Fasilitas Asrama Krapyak & WiFi Cepat untuk Riset Kampus</span>
               </div>
             </div>
@@ -112,19 +106,19 @@ export default function ProgramPage() {
         </section>
 
         {/* 3. Fiqih, Tasawuf & Tahfizh */}
-        <section id="tahfizh" className="bg-emerald-950 text-white rounded-3xl p-8 sm:p-12 border border-emerald-800 shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <section id="tahfizh" className="bg-primary-10 text-white rounded-3xl p-8 sm:p-12 border border-primary-8 shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-6 space-y-4">
-            <span className="bg-amber-500 text-emerald-950 font-extrabold text-xs px-3 py-1 rounded-full">
+            <span className="bg-amber-500 text-primary-10 font-extrabold text-xs px-3 py-1 rounded-full">
               Fiqih, Tasawuf & Tahfizh
             </span>
             <h2 className="text-2xl sm:text-4xl font-extrabold text-white">
               Kitab Fathul Qorib, Ta&apos;lim Muta&apos;allim & Tahfizh
             </h2>
             <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-              Pengajian Fiqih ibadah Syafi'iyah melalui Fathul Qorib & Safinatun Najah, pembentukan akhlaq lewat Ta'lim Muta'allim & Nashoihul Ibad, serta bimbingan halaqah hafalan Al-Qur'an harian.
+              Pengajian Fiqih ibadah Syafi&apos;iyah melalui Fathul Qorib & Safinatun Najah, pembentukan akhlaq lewat Ta&apos;lim Muta&apos;allim & Nashoihul Ibad, serta bimbingan halaqah hafalan Al-Qur'an harian.
             </p>
             <div className="pt-2">
-              <Button asChild className="bg-amber-500 hover:bg-amber-400 text-emerald-950 font-bold px-6 py-5">
+              <Button asChild className="bg-amber-500 hover:bg-amber-400 text-primary-10 font-bold px-6 py-5">
                 <Link href="/psb">
                   Daftar Santri Baru Al-Fattah
                   <ArrowRight className="w-4 h-4 ml-2" />

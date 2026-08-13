@@ -94,13 +94,13 @@ export function KitabSection() {
   return (
     <section className="py-24 bg-slate-900 text-white relative overflow-hidden">
       {/* Background Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-600/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary-6/10 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <span className="text-amber-400 font-extrabold text-xs tracking-wider uppercase bg-emerald-950 px-3.5 py-1.5 rounded-full border border-emerald-800 inline-flex items-center gap-1.5">
+          <span className="text-amber-400 font-extrabold text-xs tracking-wider uppercase bg-primary-10 px-3.5 py-1.5 rounded-full border border-primary-8 inline-flex items-center gap-1.5">
             <Library className="w-4 h-4 text-amber-400" />
             Literasi Turats Salaf-Modern
           </span>
@@ -119,8 +119,8 @@ export function KitabSection() {
                 onClick={() => setActiveCategory(cat.category)}
                 className={`px-5 py-2.5 rounded-2xl text-sm font-bold transition-all cursor-pointer ${
                   activeCategory === cat.category
-                    ? "bg-amber-500 text-emerald-950 shadow-lg shadow-amber-500/20 scale-105"
-                    : "bg-emerald-950/80 text-slate-300 hover:bg-emerald-900 border border-emerald-800"
+                    ? "bg-amber-500 text-primary-10 shadow-lg shadow-amber-500/20 scale-105"
+                    : "bg-primary-10/80 text-slate-300 hover:bg-primary-9 border border-primary-8"
                 }`}
               >
                 {cat.category}
@@ -134,12 +134,12 @@ export function KitabSection() {
           {currentCategory.items.map((kitab, idx) => (
             <div 
               key={idx}
-              className="bg-emerald-950/80 border border-emerald-800/80 rounded-3xl p-6 sm:p-8 space-y-4 hover:border-amber-400/50 hover:bg-emerald-900/90 transition-all duration-300 shadow-xl flex flex-col justify-between"
+              className="bg-primary-10/80 border border-primary-8/80 rounded-3xl p-6 sm:p-8 space-y-4 hover:border-amber-400/50 hover:bg-primary-9/90 transition-all duration-300 shadow-xl flex flex-col justify-between"
             >
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <span className="text-2xl">{kitab.icon}</span>
-                  <span className="bg-emerald-900/90 text-amber-300 text-[11px] font-bold px-2.5 py-1 rounded-full border border-emerald-700">
+                  <span className="bg-primary-9/90 text-amber-300 text-[11px] font-bold px-2.5 py-1 rounded-full border border-primary-7">
                     {kitab.level}
                   </span>
                 </div>
@@ -156,9 +156,9 @@ export function KitabSection() {
                 </p>
               </div>
 
-              <div className="pt-3 border-t border-emerald-900/90 flex items-center justify-between text-xs text-slate-400 font-medium">
+              <div className="pt-3 border-t border-primary-9/90 flex items-center justify-between text-xs text-slate-400 font-medium">
                 <span className="flex items-center gap-1">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                  <CheckCircle2 className="w-3.5 h-3.5 text-primary-4" />
                   Metode Sorogan & Bandongan
                 </span>
                 <Bookmark className="w-4 h-4 text-amber-400/80" />
@@ -168,12 +168,12 @@ export function KitabSection() {
         </div>
 
         {/* Footer CTA */}
-        <div className="bg-emerald-950/90 border border-amber-500/30 rounded-3xl p-6 text-center flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="bg-primary-10/90 border border-amber-500/30 rounded-3xl p-6 text-center flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-left space-y-1">
             <h4 className="font-extrabold text-lg text-white">Ingin Mengikuti Pengajian Kitab atau Diniyah?</h4>
             <p className="text-xs text-slate-300">Terbuka untuk Santri Mukim, Santri Mahasiswa Krapyak, maupun Masyarakat Umum.</p>
           </div>
-          <Button asChild className="bg-amber-500 hover:bg-amber-400 text-emerald-950 font-bold px-6 py-5 shrink-0">
+          <Button asChild className="bg-amber-500 hover:bg-amber-400 text-primary-10 font-bold px-6 py-5 shrink-0">
             <Link href="/program">
               Jadwal Pengajian Lengkap
               <ArrowRight className="w-4 h-4 ml-2" />

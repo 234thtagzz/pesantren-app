@@ -19,7 +19,7 @@ export default function PsbPage() {
   return (
     <main className="min-h-screen bg-slate-50 pb-20">
       {/* Header Banner */}
-      <section className="relative bg-emerald-950 text-white py-20 px-4 sm:px-6 lg:px-8 text-center overflow-hidden">
+      <section className="relative bg-primary-10 text-white py-20 px-4 sm:px-6 lg:px-8 text-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/al_fattah_hero.jpg"
@@ -27,11 +27,11 @@ export default function PsbPage() {
             fill
             className="object-cover opacity-20"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-emerald-950/80 via-emerald-950 to-emerald-950" />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary-10/80 via-primary-10 to-primary-10" />
         </div>
 
         <div className="max-w-4xl mx-auto relative z-10 space-y-4">
-          <span className="text-amber-400 font-extrabold text-xs tracking-wider uppercase bg-emerald-900 px-3.5 py-1.5 rounded-full border border-amber-500/30">
+          <span className="inline-block text-amber-400 font-extrabold text-xs tracking-wider uppercase bg-primary-9 px-3.5 py-1.5 rounded-full border border-amber-500/30">
             Tahun Ajaran 2026 / 2027
           </span>
           <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight">
@@ -52,10 +52,10 @@ export default function PsbPage() {
           <div className="lg:col-span-5 space-y-8">
             <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-xl space-y-6">
               <div>
-                <span className="text-emerald-700 font-bold text-xs uppercase tracking-wider bg-emerald-100 px-3 py-1 rounded-full">
+                <span className="text-primary-7 font-bold text-xs uppercase tracking-wider bg-primary-1 px-3 py-1 rounded-full">
                   Alur Pendaftaran
                 </span>
-                <h3 className="text-2xl font-extrabold text-emerald-950 mt-2">
+                <h3 className="text-2xl font-extrabold text-primary-10 mt-2">
                   Jadwal & Alur Masuk Santri
                 </h3>
               </div>
@@ -63,7 +63,7 @@ export default function PsbPage() {
               <div className="space-y-4">
                 {scheduleSteps.map((item) => (
                   <div key={item.step} className="flex gap-4 items-start pb-4 border-b border-slate-100 last:border-0 last:pb-0">
-                    <div className="w-10 h-10 rounded-2xl bg-emerald-950 text-amber-300 font-extrabold flex items-center justify-center shrink-0 text-sm border border-amber-400/30">
+                    <div className="w-10 h-10 rounded-2xl bg-primary-10 text-amber-300 font-extrabold flex items-center justify-center shrink-0 text-sm border border-amber-400/30">
                       {item.step}
                     </div>
                     <div>
@@ -77,26 +77,26 @@ export default function PsbPage() {
             </div>
 
             {/* Requirements Card */}
-            <div className="bg-emerald-950 text-white rounded-3xl p-6 sm:p-8 border border-emerald-800 shadow-xl space-y-4">
+            <div className="bg-primary-10 text-white rounded-3xl p-6 sm:p-8 border border-primary-8 shadow-xl space-y-4">
               <h3 className="text-xl font-bold text-amber-300 flex items-center gap-2">
                 <FileText className="w-5 h-5 text-amber-400" />
                 Syarat Dokumen & Berkas
               </h3>
               <ul className="space-y-2.5 text-xs text-slate-200">
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-primary-4 shrink-0" />
                   Fotokopi Kartu Keluarga (KK) & KTP / Kartu Mahasiswa (2 Lembar)
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-primary-4 shrink-0" />
                   Pas Foto Ukuran 3x4 (3 Lembar)
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-primary-4 shrink-0" />
                   Mengisi Surat Pernyataan Kesanggupan Mematuhi Tata Tertib
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-primary-4 shrink-0" />
                   Sowan Orang Tua/Wali ke Pengasuh Pesantren
                 </li>
               </ul>

@@ -23,7 +23,7 @@ export default function KontakPage() {
   return (
     <main className="min-h-screen bg-slate-50 pb-20">
       {/* Header Banner */}
-      <section className="relative bg-emerald-950 text-white py-20 px-4 sm:px-6 lg:px-8 text-center overflow-hidden">
+      <section className="relative bg-primary-10 text-white py-20 px-4 sm:px-6 lg:px-8 text-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/al_fattah_hero.jpg"
@@ -31,11 +31,11 @@ export default function KontakPage() {
             fill
             className="object-cover opacity-20"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-emerald-950/80 via-emerald-950 to-emerald-950" />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary-10/80 via-primary-10 to-primary-10" />
         </div>
 
         <div className="max-w-4xl mx-auto relative z-10 space-y-4">
-          <span className="text-amber-400 font-extrabold text-xs tracking-wider uppercase bg-emerald-900 px-3.5 py-1.5 rounded-full border border-amber-500/30">
+          <span className="inline-block text-amber-400 font-extrabold text-xs tracking-wider uppercase bg-primary-9 px-3.5 py-1.5 rounded-full border border-amber-500/30">
             Hubungi Kami
           </span>
           <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight">
@@ -54,13 +54,13 @@ export default function KontakPage() {
           {/* Info Details */}
           <div className="lg:col-span-5 space-y-6">
             <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-xl space-y-6">
-              <h3 className="text-2xl font-extrabold text-emerald-950">
+              <h3 className="text-2xl font-extrabold text-primary-10">
                 Alamat & Kontak Resmi
               </h3>
 
               <div className="space-y-4 text-sm text-slate-700">
                 <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-primary-1 text-primary-8 flex items-center justify-center shrink-0">
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div>
@@ -72,7 +72,7 @@ export default function KontakPage() {
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-primary-1 text-primary-8 flex items-center justify-center shrink-0">
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>
@@ -85,7 +85,7 @@ export default function KontakPage() {
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-primary-1 text-primary-8 flex items-center justify-center shrink-0">
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
@@ -98,7 +98,7 @@ export default function KontakPage() {
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-primary-1 text-primary-8 flex items-center justify-center shrink-0">
                     <Clock className="w-5 h-5" />
                   </div>
                   <div>
@@ -114,7 +114,7 @@ export default function KontakPage() {
               <div className="pt-2">
                 <Button 
                   asChild
-                  className="w-full bg-emerald-800 hover:bg-emerald-900 text-white font-extrabold py-5 rounded-xl"
+                  className="w-full bg-primary-8 hover:bg-primary-9 text-white font-extrabold py-5 rounded-xl"
                 >
                   <a 
                     href="https://wa.me/62882006454771?text=Assalamu'alaikum%20Sekretariat%20Pesantren%20Al-Fattah%20Kartasura" 
@@ -133,18 +133,18 @@ export default function KontakPage() {
           <div className="lg:col-span-7 space-y-6">
             <div className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200 shadow-xl space-y-6">
               <div>
-                <span className="text-emerald-700 font-bold text-xs uppercase tracking-wider bg-emerald-50 px-3 py-1 rounded-full">
+                <span className="text-primary-7 font-bold text-xs uppercase tracking-wider bg-emerald-50 px-3 py-1 rounded-full">
                   Pesan & Pertanyaan
                 </span>
-                <h3 className="text-2xl font-extrabold text-emerald-950 mt-2">
+                <h3 className="text-2xl font-extrabold text-primary-10 mt-2">
                   Kirim Pesan Ke Sekretariat
                 </h3>
               </div>
 
               {submitted ? (
-                <div className="bg-emerald-50 border border-emerald-300 p-8 rounded-2xl text-center space-y-3">
-                  <CheckCircle2 className="w-12 h-12 text-emerald-700 mx-auto" />
-                  <h4 className="font-bold text-xl text-emerald-950">Pesan Berhasil Terkirim!</h4>
+                <div className="bg-emerald-50 border border-primary-3 p-8 rounded-2xl text-center space-y-3">
+                  <CheckCircle2 className="w-12 h-12 text-primary-7 mx-auto" />
+                  <h4 className="font-bold text-xl text-primary-10">Pesan Berhasil Terkirim!</h4>
                   <p className="text-xs text-slate-600">
                     Terima kasih <strong>{form.nama}</strong>, pesan Anda telah terkirim ke tim sekretariat Al-Fattah.
                   </p>
@@ -196,14 +196,14 @@ export default function KontakPage() {
                       placeholder="Tuliskan pertanyaan Anda mengenai pendaftaran santri, program kitab, atau survey lokasi Krapyak..."
                       value={form.pesan}
                       onChange={(e) => setForm({ ...form, pesan: e.target.value })}
-                      className="w-full p-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600"
+                      className="w-full p-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-primary-6"
                     />
                   </div>
 
                   <Button
                     type="submit"
                     disabled={loading}
-                    className="w-full bg-emerald-900 hover:bg-emerald-950 text-white font-extrabold py-6 rounded-xl shadow-lg"
+                    className="w-full bg-primary-9 hover:bg-primary-10 text-white font-extrabold py-6 rounded-xl shadow-lg"
                   >
                     <Send className="w-4 h-4 mr-2 text-amber-400" />
                     Kirim Pesan Ke Sekretariat Al-Fattah
@@ -215,8 +215,8 @@ export default function KontakPage() {
             {/* Google Map Embed */}
             <div className="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-xl p-4 space-y-3">
               <div className="flex items-center justify-between px-2">
-                <span className="font-bold text-sm text-emerald-950 flex items-center gap-1.5">
-                  <MapPin className="w-4 h-4 text-emerald-700" />
+                <span className="font-bold text-sm text-primary-10 flex items-center gap-1.5">
+                  <MapPin className="w-4 h-4 text-primary-7" />
                   Peta Lokasi Krapyak Kartasura
                 </span>
                 <a 

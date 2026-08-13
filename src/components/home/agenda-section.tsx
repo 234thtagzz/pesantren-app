@@ -23,7 +23,7 @@ const extras = [
 
 export function AgendaSection() {
   return (
-    <section className="py-24 bg-emerald-950 text-white relative overflow-hidden">
+    <section className="py-24 bg-primary-10 text-white relative overflow-hidden">
       {/* Background Decor */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
 
@@ -34,7 +34,7 @@ export function AgendaSection() {
           {/* Left Col: Timeline */}
           <div className="lg:col-span-7 space-y-6">
             <div>
-              <span className="text-amber-400 font-bold text-xs tracking-wider uppercase bg-emerald-900 border border-emerald-800 px-3 py-1 rounded-full">
+              <span className="text-amber-400 font-bold text-xs tracking-wider uppercase bg-primary-9 border border-primary-8 px-3 py-1 rounded-full">
                 Disiplin & Keikhlasan
               </span>
               <h2 className="text-3xl sm:text-4xl font-extrabold text-white mt-3">
@@ -49,7 +49,7 @@ export function AgendaSection() {
               {dailyAgenda.map((item, idx) => (
                 <div 
                   key={idx}
-                  className="bg-emerald-900/60 border border-emerald-800/80 p-4 rounded-2xl flex flex-col sm:flex-row sm:items-center gap-3 hover:bg-emerald-900 transition-colors"
+                  className="bg-primary-9/60 border border-primary-8/80 p-4 rounded-2xl flex flex-col sm:flex-row sm:items-center gap-3 hover:bg-primary-9 transition-colors"
                 >
                   <div className="flex items-center gap-2 bg-amber-500/20 text-amber-300 px-3 py-1.5 rounded-xl border border-amber-500/30 text-xs font-bold shrink-0">
                     <Clock className="w-4 h-4 text-amber-400" />
@@ -65,7 +65,7 @@ export function AgendaSection() {
 
           {/* Right Col: Extracurricular Badges */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="bg-emerald-900/80 border border-emerald-700/60 rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl backdrop-blur-md">
+            <div className="bg-primary-9/80 border border-primary-7/60 rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl backdrop-blur-md">
               <div>
                 <span className="inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-amber-300 bg-amber-500/20 px-3 py-1 rounded-full border border-amber-500/30">
                   <Sparkles className="w-3.5 h-3.5" />
@@ -83,18 +83,18 @@ export function AgendaSection() {
                 {extras.map((ex, idx) => (
                   <div 
                     key={idx}
-                    className="bg-emerald-950/80 p-3.5 rounded-xl border border-emerald-800 hover:border-amber-400/50 transition-colors space-y-1"
+                    className="bg-primary-10/80 p-3.5 rounded-xl border border-primary-8 hover:border-amber-400/50 transition-colors space-y-1"
                   >
                     <div className="text-xs text-amber-400 font-semibold">{ex.category}</div>
                     <div className="text-sm font-bold text-white flex items-center gap-1.5">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                      <CheckCircle2 className="w-4 h-4 text-primary-4 shrink-0" />
                       {ex.name}
                     </div>
                   </div>
                 ))}
               </div>
 
-              <div className="pt-2 border-t border-emerald-800 text-center">
+              <div className="pt-2 border-t border-primary-8 text-center">
                 <p className="text-xs text-slate-300">
                   🌟 Rutin menyelenggarakan Peringatan Hari Besar Islam (PHBI), Pengajian Umum, dan Pentas Seni Santri.
                 </p>

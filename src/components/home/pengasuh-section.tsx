@@ -18,9 +18,9 @@ export function PengasuhSection() {
                 fill
                 className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/80 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary-10/80 via-transparent to-transparent" />
               <div className="absolute bottom-4 left-4 right-4 text-white">
-                <span className="bg-amber-500 text-emerald-950 text-xs font-extrabold px-2.5 py-1 rounded-md uppercase tracking-wider">
+                <span className="bg-amber-500 text-primary-10 text-xs font-extrabold px-2.5 py-1 rounded-md uppercase tracking-wider">
                   Pengasuh Pesantren
                 </span>
                 <p className="font-bold text-base sm:text-lg mt-1">Dr. KH. Moh. Mahbub, S.Ag., M.Si.</p>
@@ -28,8 +28,8 @@ export function PengasuhSection() {
               </div>
             </div>
             {/* Experience Pill */}
-            <div className="absolute -bottom-4 right-2 sm:-right-4 bg-emerald-950 text-white p-3.5 sm:p-4 rounded-2xl shadow-xl border border-amber-400/40 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-amber-400 text-emerald-950 flex items-center justify-center font-extrabold text-lg">
+            <div className="absolute -bottom-4 right-2 sm:-right-4 bg-primary-10 text-white p-3.5 sm:p-4 rounded-2xl shadow-xl border border-amber-400/40 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-amber-400 text-muted flex items-center justify-center font-extrabold text-lg">
                 2007
               </div>
               <div className="text-xs font-semibold">
@@ -42,10 +42,10 @@ export function PengasuhSection() {
           {/* Text Content Column */}
           <div className="lg:col-span-7 space-y-6 text-slate-800">
             <div>
-              <span className="text-emerald-700 font-bold text-sm tracking-wider uppercase bg-emerald-100 px-3 py-1 rounded-full border border-emerald-200">
+              <span className="text-primary-7 font-bold text-sm tracking-wider uppercase bg-primary-1 px-3 py-1 rounded-full border border-primary-2">
                 Dawuh & Sambutan Pengasuh
               </span>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-emerald-950 tracking-tight mt-3">
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-primary-10 tracking-tight mt-3">
                 &ldquo;Berbudi Tinggi, Berbadan Sehat, Berpengetahuan Luas & Berpikiran Bebas&rdquo;
               </h2>
             </div>
@@ -62,7 +62,7 @@ export function PengasuhSection() {
             {/* Core Values */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
               <div className="flex items-center gap-2 bg-slate-50 p-3 rounded-xl border border-slate-200">
-                <ShieldCheck className="w-5 h-5 text-emerald-700 shrink-0" />
+                <ShieldCheck className="w-5 h-5 text-primary-7 shrink-0" />
                 <span className="text-xs font-bold text-slate-800">Kajian Kitab Kuning</span>
               </div>
               <div className="flex items-center gap-2 bg-slate-50 p-3 rounded-xl border border-slate-200">
@@ -70,7 +70,7 @@ export function PengasuhSection() {
                 <span className="text-xs font-bold text-slate-800">Pesantren Mahasiswa</span>
               </div>
               <div className="flex items-center gap-2 bg-slate-50 p-3 rounded-xl border border-slate-200">
-                <Heart className="w-5 h-5 text-emerald-700 shrink-0" />
+                <Heart className="w-5 h-5 text-primary-7 shrink-0" />
                 <span className="text-xs font-bold text-slate-800">Panca Jiwa & Ukhuwah</span>
               </div>
             </div>
@@ -78,7 +78,7 @@ export function PengasuhSection() {
             <div className="pt-3">
               <Button
                 asChild
-                className="bg-emerald-900 hover:bg-emerald-950 text-white font-bold px-6 py-5"
+                className="bg-primary-9 hover:bg-primary-10 text-white font-bold px-6 py-5"
               >
                 <Link href="/profile">
                   Profil Lengkap Pesantren & Yayasan

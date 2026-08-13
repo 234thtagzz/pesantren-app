@@ -37,10 +37,10 @@ export function FasilitasSection() {
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <span className="text-emerald-700 font-bold text-sm tracking-wider uppercase bg-emerald-100 px-3.5 py-1.5 rounded-full border border-emerald-200">
+          <span className="text-primary-7 font-bold text-sm tracking-wider uppercase bg-primary-1 px-3.5 py-1.5 rounded-full border border-primary-2">
             Lingkungan & Sarana Pesantren
           </span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-emerald-950 tracking-tight">
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-primary-10 tracking-tight">
             Fasilitas Penunjang Santri & Mahasiswa
           </h2>
           <p className="text-slate-600 text-base sm:text-lg">
@@ -65,14 +65,14 @@ export function FasilitasSection() {
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/70 via-transparent to-transparent" />
-                    <div className="absolute bottom-3 left-3 w-9 h-9 rounded-xl bg-amber-400 text-emerald-950 flex items-center justify-center font-bold shadow-md">
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary-10/70 via-transparent to-transparent" />
+                    <div className="absolute bottom-3 left-3 w-9 h-9 rounded-xl bg-amber-400 text-primary-10 flex items-center justify-center font-bold shadow-md">
                       <Icon className="w-5 h-5" />
                     </div>
                   </div>
 
                   <div className="p-5 space-y-2">
-                    <h3 className="font-extrabold text-lg text-emerald-950 group-hover:text-emerald-700 transition-colors">
+                    <h3 className="font-extrabold text-lg text-primary-10 group-hover:text-primary-7 transition-colors">
                       {fac.title}
                     </h3>
                     <p className="text-slate-600 text-xs leading-relaxed">
@@ -81,7 +81,7 @@ export function FasilitasSection() {
                   </div>
                 </div>
 
-                <div className="p-5 pt-0 text-xs font-semibold text-emerald-800 flex items-center gap-1">
+                <div className="p-5 pt-0 text-xs font-semibold text-primary-8 flex items-center gap-1">
                   <CheckCircle2 className="w-3.5 h-3.5 text-amber-500" />
                   <span>Siap Digunakan Santri</span>
                 </div>
@@ -92,7 +92,7 @@ export function FasilitasSection() {
 
         {/* CTA */}
         <div className="mt-12 text-center">
-          <Button asChild variant="outline" size="lg" className="border-emerald-800 text-emerald-900 font-bold px-8 py-6 rounded-2xl">
+          <Button asChild variant="outline" size="lg" className="border-primary-8 text-primary-9 font-bold px-8 py-6 rounded-2xl">
             <Link href="/fasilitas">
               Lihat Seluruh Fasilitas Kampus Krapyak
               <ArrowRight className="w-4 h-4 ml-2 text-amber-500" />

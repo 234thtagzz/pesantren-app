@@ -51,7 +51,7 @@ export default function FasilitasPage() {
   return (
     <main className="min-h-screen bg-slate-50 pb-20">
       {/* Header Banner */}
-      <section className="relative bg-emerald-950 text-white py-20 px-4 sm:px-6 lg:px-8 text-center overflow-hidden">
+      <section className="relative bg-primary-10 text-white py-20 px-4 sm:px-6 lg:px-8 text-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/al_fattah_hero.jpg"
@@ -59,11 +59,11 @@ export default function FasilitasPage() {
             fill
             className="object-cover opacity-20"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-emerald-950/80 via-emerald-950 to-emerald-950" />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary-10/80 via-primary-10 to-primary-10" />
         </div>
 
         <div className="max-w-4xl mx-auto relative z-10 space-y-4">
-          <span className="text-amber-400 font-extrabold text-xs tracking-wider uppercase bg-emerald-900 px-3.5 py-1.5 rounded-full border border-amber-500/30">
+          <span className="inline-block text-amber-400 font-extrabold text-xs tracking-wider uppercase bg-primary-9 px-3.5 py-1.5 rounded-full border border-amber-500/30">
             Lingkungan Kampus Krapyak
           </span>
           <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight">
@@ -82,12 +82,12 @@ export default function FasilitasPage() {
               <div className="relative h-60 w-full overflow-hidden">
                 <Image src={item.img} alt={item.name} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
-                <span className="absolute top-4 left-4 bg-emerald-950/80 text-amber-300 font-bold text-xs px-3 py-1 rounded-full border border-amber-400/30">
+                <span className="absolute top-4 left-4 bg-primary-10/80 text-amber-300 font-bold text-xs px-3 py-1 rounded-full border border-amber-400/30">
                   {item.tag}
                 </span>
               </div>
               <div className="p-6 space-y-3">
-                <h3 className="font-extrabold text-xl text-emerald-950">{item.name}</h3>
+                <h3 className="font-extrabold text-xl text-primary-10">{item.name}</h3>
                 <p className="text-slate-600 text-sm leading-relaxed">{item.desc}</p>
               </div>
             </div>
@@ -95,7 +95,7 @@ export default function FasilitasPage() {
         </div>
 
         {/* Visit Callout */}
-        <div className="bg-emerald-950 text-white rounded-3xl p-8 sm:p-12 border border-emerald-800 text-center space-y-4">
+        <div className="bg-primary-10 text-white rounded-3xl p-8 sm:p-12 border border-primary-8 text-center space-y-4">
           <h3 className="text-2xl sm:text-3xl font-extrabold text-amber-300">
             Ingin Bersilaturahmi / Survey Pesantren di Krapyak Kartasura?
           </h3>
@@ -103,7 +103,7 @@ export default function FasilitasPage() {
             Sekretariat Pondok Pesantren Al-Fattah menyambut kunjungan calon santri dan wali santri setiap hari.
           </p>
           <div className="pt-2">
-            <Button asChild className="bg-amber-500 hover:bg-amber-400 text-emerald-950 font-bold px-8 py-6">
+            <Button asChild className="bg-amber-500 hover:bg-amber-400 text-primary-10 font-bold px-8 py-6">
               <Link href="/kontak">
                 <GraduationCap className="w-5 h-5 mr-2" />
                 Jadwalkan Kunjungan / Hubungi Kami

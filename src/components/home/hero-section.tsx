@@ -15,7 +15,7 @@ import { Button } from "@/components/ui/button";
 
 export function HeroSection() {
   return (
-    <section className="relative bg-emerald-950 text-white min-h-[88vh] flex items-center overflow-hidden py-16 lg:py-24">
+    <section className="relative bg-primary-10 text-white min-h-[88vh] flex items-center overflow-hidden py-16 lg:py-24">
       {/* Background Image with Dark Gradient Overlay */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -25,7 +25,7 @@ export function HeroSection() {
           priority
           className="object-cover object-center opacity-30 mix-blend-luminosity scale-105 transition-transform duration-1000"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-emerald-950 via-emerald-950/85 to-emerald-950/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-primary-10 via-primary-10/85 to-primary-10/40" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-500/10 via-transparent to-transparent pointer-events-none" />
       </div>
 
@@ -36,7 +36,7 @@ export function HeroSection() {
           <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
             
             {/* Arabic Bismillah & Location Badge */}
-            <div className="inline-flex items-center gap-2 bg-emerald-900/80 border border-amber-500/40 px-4 py-1.5 rounded-full shadow-lg backdrop-blur-md animate-pulse">
+            <div className="inline-flex items-center gap-2 bg-primary-9/80 border border-amber-500/40 px-4 py-1.5 rounded-full shadow-lg backdrop-blur-md animate-pulse">
               <Sparkles className="w-4 h-4 text-amber-400" />
               <span className="text-xs sm:text-sm font-semibold tracking-wider text-amber-300">
                 بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ — Krapyak, Kartasura, Sukoharjo
@@ -46,7 +46,7 @@ export function HeroSection() {
             {/* Main Headline */}
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.15] text-white">
               Pondok Pesantren{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-amber-200">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-amber-200 whitespace-nowrap">
                 Al-Fattah
               </span>
               {" "}Kartasura
@@ -58,16 +58,16 @@ export function HeroSection() {
             </p>
 
             {/* Key Value Bullets */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2 text-xs sm:text-sm text-emerald-200">
-              <span className="flex items-center gap-1.5 bg-emerald-900/60 px-3 py-1.5 rounded-xl border border-emerald-700/50 hover:border-amber-400/50 transition-colors">
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2 text-xs sm:text-sm text-primary-2">
+              <span className="flex items-center gap-1.5 bg-primary-9/60 px-3 py-1.5 rounded-xl border border-primary-7/50 hover:border-amber-400/50 transition-colors">
                 <CheckCircle2 className="w-4 h-4 text-amber-400" />
                 Yayasan Insan Kamil (Est. 2007)
               </span>
-              <span className="flex items-center gap-1.5 bg-emerald-900/60 px-3 py-1.5 rounded-xl border border-emerald-700/50 hover:border-amber-400/50 transition-colors">
+              <span className="flex items-center gap-1.5 bg-primary-9/60 px-3 py-1.5 rounded-xl border border-primary-7/50 hover:border-amber-400/50 transition-colors">
                 <CheckCircle2 className="w-4 h-4 text-amber-400" />
                 Metode Amtsilati & Sorogan
               </span>
-              <span className="flex items-center gap-1.5 bg-emerald-900/60 px-3 py-1.5 rounded-xl border border-emerald-700/50 hover:border-amber-400/50 transition-colors">
+              <span className="flex items-center gap-1.5 bg-primary-9/60 px-3 py-1.5 rounded-xl border border-primary-7/50 hover:border-amber-400/50 transition-colors">
                 <CheckCircle2 className="w-4 h-4 text-amber-400" />
                 Dekat Kampus UIN RM Said Surakarta
               </span>
@@ -78,7 +78,7 @@ export function HeroSection() {
               <Button
                 asChild
                 size="lg"
-                className="w-full sm:w-auto bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-emerald-950 font-extrabold px-8 py-6 text-base shadow-lg shadow-amber-500/20 border border-amber-300/40 hover:scale-105 transition-all duration-300"
+                className="w-full sm:w-auto bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-primary-10 font-extrabold px-8 py-6 text-base shadow-lg shadow-amber-500/20 border border-amber-300/40 hover:scale-105 transition-all duration-300"
               >
                 <Link href="/psb">
                   <GraduationCap className="w-5 h-5 mr-2" />
@@ -90,7 +90,7 @@ export function HeroSection() {
                 asChild
                 variant="outline"
                 size="lg"
-                className="w-full sm:w-auto bg-emerald-900/60 hover:bg-emerald-800 border-emerald-700 text-white font-semibold px-8 py-6 text-base backdrop-blur-sm hover:scale-105 transition-all duration-300"
+                className="w-full sm:w-auto bg-primary-9/60 hover:bg-primary-8 border-primary-7 text-white font-semibold px-8 py-6 text-base backdrop-blur-sm hover:scale-105 transition-all duration-300"
               >
                 <Link href="/profile">
                   Profil & Pengasuh
@@ -103,13 +103,13 @@ export function HeroSection() {
 
           {/* Right Card / Floating Interactive Highlights */}
           <div className="lg:col-span-5 relative animate-float">
-            <div className="relative mx-auto max-w-md lg:max-w-none bg-gradient-to-b from-emerald-900/90 to-emerald-950/95 border border-emerald-700/60 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-md hover:border-amber-400/40 transition-colors">
-              <div className="absolute -top-3 right-6 bg-amber-500 text-emerald-950 font-extrabold text-xs px-3.5 py-1 rounded-full uppercase tracking-wider shadow-md animate-pulse">
+            <div className="relative mx-auto max-w-md lg:max-w-none bg-gradient-to-b from-primary-9/90 to-primary-10/95 border border-primary-7/60 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-md hover:border-amber-400/40 transition-colors">
+              <div className="absolute -top-3 right-6 bg-amber-500 text-primary-10 font-extrabold text-xs px-3.5 py-1 rounded-full uppercase tracking-wider shadow-md animate-pulse">
                 Pusat Informasi Resmi
               </div>
 
               <div className="space-y-4">
-                <div className="border-b border-emerald-800/80 pb-4">
+                <div className="border-b border-primary-8/80 pb-4">
                   <h3 className="text-xl font-extrabold text-white flex items-center gap-2">
                     <BookOpen className="w-5 h-5 text-amber-400" />
                     Motto & Panca Jiwa Pesantren
@@ -121,15 +121,15 @@ export function HeroSection() {
 
                 {/* Quick Info Grid */}
                 <div className="space-y-2.5 text-xs sm:text-sm">
-                  <div className="flex justify-between items-center bg-emerald-950/80 p-3 rounded-xl border border-emerald-800/80 hover:border-amber-400/30 transition-colors">
+                  <div className="flex justify-between items-center bg-primary-10/80 p-3 rounded-xl border border-primary-8/80 hover:border-amber-400/30 transition-colors">
                     <span className="text-slate-300">Pengasuh Utama:</span>
                     <span className="font-semibold text-amber-300 text-right">Dr. KH. Moh. Mahbub, M.Si. & Nyai</span>
                   </div>
-                  <div className="flex justify-between items-center bg-emerald-950/80 p-3 rounded-xl border border-emerald-800/80 hover:border-amber-400/30 transition-colors">
+                  <div className="flex justify-between items-center bg-primary-10/80 p-3 rounded-xl border border-primary-8/80 hover:border-amber-400/30 transition-colors">
                     <span className="text-slate-300">Lokasi Pesantren:</span>
-                    <span className="font-semibold text-emerald-300">Krapyak, Kartasura, Sukoharjo</span>
+                    <span className="font-semibold text-primary-3">Krapyak, Kartasura, Sukoharjo</span>
                   </div>
-                  <div className="flex justify-between items-center bg-emerald-950/80 p-3 rounded-xl border border-emerald-800/80 hover:border-amber-400/30 transition-colors">
+                  <div className="flex justify-between items-center bg-primary-10/80 p-3 rounded-xl border border-primary-8/80 hover:border-amber-400/30 transition-colors">
                     <span className="text-slate-300">Program Santri:</span>
                     <span className="font-semibold text-amber-300">Mukim, Diniyah & Mahasiswa</span>
                   </div>
@@ -138,7 +138,7 @@ export function HeroSection() {
                 <div className="pt-2">
                   <Button
                     asChild
-                    className="w-full bg-emerald-700 hover:bg-emerald-600 text-white font-bold py-5 text-sm rounded-xl shadow-md border border-emerald-500/30"
+                    className="w-full bg-primary-7 hover:bg-primary-6 text-white font-bold py-5 text-sm rounded-xl shadow-md border border-primary-5/30"
                   >
                     <Link href="/program">
                       Lihat Kurikulum Kitab & Program
@@ -152,16 +152,16 @@ export function HeroSection() {
         </div>
 
         {/* Bottom Statistics Counter Strip */}
-        <div className="mt-16 pt-10 border-t border-emerald-900/80 grid grid-cols-2 md:grid-cols-4 gap-6">
-          <div className="bg-emerald-900/40 border border-emerald-800/60 p-4 sm:p-6 rounded-2xl text-center hover:-translate-y-1 hover:border-amber-400/40 transition-all duration-300 shadow-md">
+        <div className="mt-16 pt-10 border-t border-primary-9/80 grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="bg-primary-9/40 border border-primary-8/60 p-4 sm:p-6 rounded-2xl text-center hover:-translate-y-1 hover:border-amber-400/40 transition-all duration-300 shadow-md">
             <div className="w-10 h-10 mx-auto mb-2 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center">
               <Users className="w-5 h-5" />
             </div>
-            <div className="text-2xl sm:text-3xl font-extrabold text-white">500+</div>
+            <div className="text-2xl sm:text-3xl font-extrabold text-white">150+</div>
             <div className="text-xs sm:text-sm text-slate-300 font-medium">Santri Mukim & Mahasiswa</div>
           </div>
 
-          <div className="bg-emerald-900/40 border border-emerald-800/60 p-4 sm:p-6 rounded-2xl text-center hover:-translate-y-1 hover:border-amber-400/40 transition-all duration-300 shadow-md">
+          <div className="bg-primary-9/40 border border-primary-8/60 p-4 sm:p-6 rounded-2xl text-center hover:-translate-y-1 hover:border-amber-400/40 transition-all duration-300 shadow-md">
             <div className="w-10 h-10 mx-auto mb-2 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center">
               <BookCheck className="w-5 h-5" />
             </div>
@@ -169,7 +169,7 @@ export function HeroSection() {
             <div className="text-xs sm:text-sm text-slate-300 font-medium">Kajian Kitab Turats Rutin</div>
           </div>
 
-          <div className="bg-emerald-900/40 border border-emerald-800/60 p-4 sm:p-6 rounded-2xl text-center hover:-translate-y-1 hover:border-amber-400/40 transition-all duration-300 shadow-md">
+          <div className="bg-primary-9/40 border border-primary-8/60 p-4 sm:p-6 rounded-2xl text-center hover:-translate-y-1 hover:border-amber-400/40 transition-all duration-300 shadow-md">
             <div className="w-10 h-10 mx-auto mb-2 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center">
               <Award className="w-5 h-5" />
             </div>
@@ -177,7 +177,7 @@ export function HeroSection() {
             <div className="text-xs sm:text-sm text-slate-300 font-medium">Berdiri Yayasan Insan Kamil</div>
           </div>
 
-          <div className="bg-emerald-900/40 border border-emerald-800/60 p-4 sm:p-6 rounded-2xl text-center hover:-translate-y-1 hover:border-amber-400/40 transition-all duration-300 shadow-md">
+          <div className="bg-primary-9/40 border border-primary-8/60 p-4 sm:p-6 rounded-2xl text-center hover:-translate-y-1 hover:border-amber-400/40 transition-all duration-300 shadow-md">
             <div className="w-10 h-10 mx-auto mb-2 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center">
               <MapPin className="w-5 h-5" />
             </div>
