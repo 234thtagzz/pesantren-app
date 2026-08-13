@@ -46,7 +46,7 @@ export default function AdminLoginPage() {
     <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4">
       <div className="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl space-y-6 border border-slate-200">
         <div className="text-center space-y-2">
-          <div className="w-12 h-12 bg-emerald-100 text-emerald-800 rounded-2xl flex items-center justify-center mx-auto shadow-sm">
+          <div className="w-12 h-12 bg-emerald-100 text-primary-8 rounded-2xl flex items-center justify-center mx-auto shadow-sm">
             <Lock className="w-6 h-6" />
           </div>
           <h1 className="text-2xl font-extrabold text-slate-900">
@@ -102,7 +102,7 @@ export default function AdminLoginPage() {
           <Button
             type="submit"
             disabled={loading}
-            className="w-full bg-emerald-800 hover:bg-emerald-900 text-white font-extrabold py-5 rounded-xl shadow-md"
+            className="w-full bg-primary-8 hover:bg-primary-9 text-white font-extrabold py-5 rounded-xl shadow-md"
           >
             {loading ? (
               <span className="flex items-center gap-2">
