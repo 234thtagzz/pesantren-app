@@ -45,28 +45,15 @@ export default function ProgramPage() {
         <section id="turats-nahwu" className="bg-white rounded-3xl p-8 sm:p-12 border border-slate-200 shadow-xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-6 space-y-4">
             <span className="bg-amber-100 text-amber-900 font-bold text-xs px-3 py-1 rounded-full border border-amber-300">
-              Gramatika Arab & Sorogan
+              Fiqih, Tasawuf & Tahfizh
             </span>
             <h2 className="text-2xl sm:text-4xl font-extrabold text-primary-10">
-              Metode Amtsilati, Jurumiyah & Alfiyah Ibn Malik
+              Kitab Fathul Qorib, Ta&apos;lim Muta&apos;allim & Tahfizh
             </h2>
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-              Program pembelajaran tata bahasa Arab sistematis. Bagi santri pemula dibimbing dengan metode cepat <strong>Amtsilati</strong> agar mahir membaca gundul, dilanjutkan kajian mendalam matan <strong>Al-Jurumiyah</strong> dan <strong>Alfiyah Ibn Malik</strong> dengan sorogan dan bandongan.
+              Program Tahfidz Al-Qur&apos;an di Pondok Pesantren Al-Fattah diselenggarakan untuk mencetak <strong> generasi penghafal Al-Qur&apos;an 30 Juz mutqin </strong>, beradab, serta memiliki ketepatan bacaan tajwid dan makhraj yang baik. Santri baru yang belum lancar membaca Al-Qur&apos;an terlebih dahulu dibimbing melalui kelas tahsin sebelum masuk ke tahap matrikulasi hafalan Juz 30 dan surat-surat pilihan, baru kemudian resmi mengikuti program Tahfidz reguler. Program ini didampingi oleh ustaz-ustazah pengampu yang diangkat dari santri senior berkualifikasi serta diuji dengan syahadah bagi santri yang telah menuntaskan hafalan 15 juz. Sebagai penunjang, santri Tahfidz juga mengikuti kajian kitab At-Tibyan fi Adabi Hamalatil Qur'an karya Imam An-Nawawi untuk memperdalam adab dan fikih seputar Al-Qur&apos;an.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-              <div className="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-800">
-                ✅ Metode Praktis Amtsilati
-              </div>
-              <div className="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-800">
-                ✅ Setoran Hafalan Alfiyah
-              </div>
-              <div className="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-800">
-                ✅ Sorogan Tatap Muka Kyai
-              </div>
-              <div className="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-800">
-                ✅ Bahtsul Masail Santri
-              </div>
-            </div>
+            
           </div>
           <div className="lg:col-span-6">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-amber-400 aspect-[16/10]">
@@ -109,13 +96,13 @@ export default function ProgramPage() {
         <section id="tahfizh" className="bg-primary-10 text-white rounded-3xl p-8 sm:p-12 border border-primary-8 shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-6 space-y-4">
             <span className="bg-amber-500 text-primary-10 font-extrabold text-xs px-3 py-1 rounded-full">
-              Fiqih, Tasawuf & Tahfizh
+              Gramatika Arab & Sorogan
             </span>
             <h2 className="text-2xl sm:text-4xl font-extrabold text-white">
               Kitab Fathul Qorib, Ta&apos;lim Muta&apos;allim & Tahfizh
             </h2>
             <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-              Pengajian Fiqih ibadah Syafi&apos;iyah melalui Fathul Qorib & Safinatun Najah, pembentukan akhlaq lewat Ta&apos;lim Muta&apos;allim & Nashoihul Ibad, serta bimbingan halaqah hafalan Al-Qur'an harian.
+              Pengajian Fiqih ibadah Syafi&apos;iyah melalui Fathul Qorib & Safinatun Najah, pembentukan akhlaq lewat Ta&apos;lim Muta&apos;allim & Nashoihul Ibad, serta bimbingan halaqah hafalan Al-Qur&apos;an harian.
             </p>
             <div className="pt-2">
               <Button asChild className="bg-amber-500 hover:bg-amber-400 text-primary-10 font-bold px-6 py-5">

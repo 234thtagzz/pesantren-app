@@ -1,525 +1,223 @@
-"use client";
-
-import { useState } from "react";
-import emailjs from "@emailjs/browser";
-import { supabase } from "@/lib/supabaseClient";
+import Image from "next/image";
+import Link from "next/link";
 import { 
+  Target, 
+  Compass, 
   CheckCircle2, 
-  Send, 
-  Loader2, 
-  PhoneCall,
-  Upload,
-  FileCheck
+  GraduationCap,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 
-export function PsbForm() {
-  const [loading, setLoading] = useState(false);
-  const [uploadStatus, setUploadStatus] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-  const [registrationId, setRegistrationId] = useState("");
-
-  const [formData, setFormData] = useState({
-    namaSantri: "",
-    jenisKelamin: "putra",
-    kategori: "Santri Mukim Program Kitab",
-    perguruanTinggi: "UIN Raden Mas Said Surakarta",
-    namaOrangTua: "",
-    whatsapp: "",
-    email: "",
-    kotaAsal: "",
-    catatan: ""
-  });
-
-  // State untuk 5 Berkas
-  const [files, setFiles] = useState<{
-    pasFoto: File | null;
-    kk: File | null;
-    ktp: File | null;
-    ijazah: File | null;
-    suratBebasNarkoba: File | null;
-  }>({
-    pasFoto: null,
-    kk: null,
-    ktp: null,
-    ijazah: null,
-    suratBebasNarkoba: null,
-  });
-
-  const [fileErrors, setFileErrors] = useState<Record<string, string>>({});
-
-  // Handler Perubahan File + Validasi Ukuran (Max 5MB per file)
-  const handleFileChange = (key: keyof typeof files, selectedFile: File | null) => {
-    if (!selectedFile) {
-      setFiles((prev) => ({ ...prev, [key]: null }));
-      return;
-    }
-
-    const MAX_SIZE = 5 * 1024 * 1024; // 5 MB
-    if (selectedFile.size > MAX_SIZE) {
-      setFileErrors((prev) => ({ ...prev, [key]: "Ukuran file maksimal 5 MB!" }));
-      setFiles((prev) => ({ ...prev, [key]: null }));
-      return;
-    }
-
-    setFileErrors((prev) => ({ ...prev, [key]: "" }));
-    setFiles((prev) => ({ ...prev, [key]: selectedFile }));
-  };
-
-  // Helper fungsi upload file tunggal ke Supabase Storage
-  const uploadToSupabaseStorage = async (file: File | null, registrationCode: string, fileType: string) => {
-    if (!file) return null;
-
-    const fileExt = file.name.split(".").pop();
-    const cleanFileName = `${fileType}_${Date.now()}.${fileExt}`;
-    const filePath = `${registrationCode}/${cleanFileName}`;
-
-    const { error: uploadError } = await supabase.storage
-      .from("berkas-psb")
-      .upload(filePath, file, { upsert: true });
-
-    if (uploadError) {
-      console.error(`Gagal upload ${fileType}:`, uploadError);
-      throw uploadError;
-    }
-
-    // Dapatkan Public URL
-    const { data } = supabase.storage.from("berkas-psb").getPublicUrl(filePath);
-    return data.publicUrl;
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-
-    const randomId = `PSB-AF-${Math.floor(Math.random() * 89999) + 10000}`;
-    setRegistrationId(randomId);
-
-    try {
-      // 1. Upload 5 file ke Supabase Storage
-      setUploadStatus("Mengunggah berkas ke cloud storage...");
-      const [urlPasFoto, urlKk, urlKtp, urlIjazah, urlsuratBebasNarkoba] = await Promise.all([
-        uploadToSupabaseStorage(files.pasFoto, randomId, "pas_foto"),
-        uploadToSupabaseStorage(files.kk, randomId, "kk"),
-        uploadToSupabaseStorage(files.ktp, randomId, "ktp"),
-        uploadToSupabaseStorage(files.ijazah, randomId, "ijazah"),
-        uploadToSupabaseStorage(files.suratBebasNarkoba, randomId, "berkas_pendukung"),
-      ]);
-
-      // 2. Simpan Data Teks + Link File ke Database Supabase
-      setUploadStatus("Menyimpan data pendaftaran...");
-      const { error: dbError } = await supabase.from("pendaftar_psb").insert([
-        {
-          registration_id: randomId,
-          nama_santri: formData.namaSantri,
-          jenis_kelamin: formData.jenisKelamin,
-          kategori: formData.kategori,
-          perguruan_tinggi: formData.perguruanTinggi || null,
-          nama_orang_tua: formData.namaOrangTua,
-          whatsapp: formData.whatsapp,
-          email: formData.email || null,
-          kota_asal: formData.kotaAsal,
-          catatan: formData.catatan || null,
-          url_pas_foto: urlPasFoto,
-          url_kk: urlKk,
-          url_ktp: urlKtp,
-          url_ijazah: urlIjazah,
-          url_berkas_pendukung: urlsuratBebasNarkoba,
-        },
-      ]);
-
-      if (dbError) throw dbError;
-
-      // 3. Kirim Notifikasi via EmailJS (Termasuk Link Berkas)
-      setUploadStatus("Mengirim notifikasi email panitia...");
-      const templateParams = {
-        registration_id: randomId,
-        nama_santri: formData.namaSantri,
-        jenis_kelamin: formData.jenisKelamin,
-        kategori: formData.kategori,
-        perguruan_tinggi: formData.perguruanTinggi || "-",
-        nama_orang_tua: formData.namaOrangTua,
-        whatsapp: formData.whatsapp,
-        email: formData.email || "-",
-        kota_asal: formData.kotaAsal,
-        catatan: formData.catatan || "-",
-        url_pas_foto: urlPasFoto || "Tidak diunggah",
-        url_kk: urlKk || "Tidak diunggah",
-        url_ktp: urlKtp || "Tidak diunggah",
-        url_ijazah: urlIjazah || "Tidak diunggah",
-        url_berkas_pendukung: urlsuratBebasNarkoba || "Tidak diunggah",
-        to_email: "ponpesalfattahkts@gmail.com",
-      };
-
-      if (
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID &&
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID &&
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
-      ) {
-        await emailjs.send(
-          process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-          process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
-          templateParams,
-          process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
-        );
-      }
-
-      setSubmitted(true);
-    } catch (error) {
-      console.error("Gagal memproses pendaftaran:", error);
-      alert("Terjadi kesalahan saat memproses pendaftaran. Silakan periksa koneksi atau coba lagi.");
-    } finally {
-      setLoading(false);
-      setUploadStatus("");
-    }
-  };
-
-  const getWaMessage = () => {
-    const text = `Assalamu'alaikum Panitia PSB Pondok Pesantren Al-Fattah Krapyak Kartasura,
-
-Saya ingin konfirmasi Pendaftaran Santri Baru Online:
-📌 *ID Registrasi:* ${registrationId}
-👤 *Nama Santri:* ${formData.namaSantri}
-🚻 *Jenis Kelamin:* Santri ${formData.jenisKelamin}
-📚 *Kategori:* ${formData.kategori}
-🎓 *Instansi/Perguruan Tinggi:* ${formData.perguruanTinggi || "-"}
-👨‍👩‍👦 *Nama Orang Tua/Wali:* ${formData.namaOrangTua}
-📱 *WhatsApp:* ${formData.whatsapp}
-📧 *Email:* ${formData.email || "-"}
-📍 *Kota Asal:* ${formData.kotaAsal}
-
-Berkas pendaftaran telah diunggah lengkap via website. Mohon informasi verifikasi selanjutnya. Terima kasih.`;
-    return encodeURIComponent(text);
-  };
-
+export function ProfileView() {
   return (
-    <div className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200 shadow-2xl space-y-6">
-      <div>
-        <span className="text-primary-7 font-bold text-xs uppercase tracking-wider bg-emerald-50 px-3 py-1 rounded-full border border-primary-2">
-          Formulir Pendaftaran Online
-        </span>
-        <h3 className="text-2xl sm:text-3xl font-extrabold text-primary-10 mt-2">
-          Registrasi Calon Santri Baru T.A. 2026/2027
-        </h3>
-        <p className="text-slate-600 text-xs sm:text-sm mt-1">
-          Isi formulir berikut dan unggah berkas persyaratan calon santri Pondok Pesantren Al-Fattah Krapyak Kartasura.
-        </p>
-      </div>
+    <main className="min-h-screen bg-slate-50 pb-20">
+      {/* Profile Header Banner */}
+      <section className="relative bg-emerald-950 text-white py-20 px-4 sm:px-6 lg:px-8 text-center overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/al_fattah_hero.jpg"
+            alt="Profil Pesantren Al-Fattah Krapyak Kartasura"
+            fill
+            className="object-cover opacity-20"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-emerald-950/80 via-emerald-950 to-emerald-950" />
+        </div>
 
-      {submitted ? (
-        <div className="bg-emerald-50 border border-primary-3 rounded-2xl p-8 text-center space-y-4 animate-in fade-in zoom-in duration-300">
-          <div className="w-16 h-16 bg-primary-7 text-white rounded-full mx-auto flex items-center justify-center shadow-lg">
-            <CheckCircle2 className="w-10 h-10 text-amber-300" />
-          </div>
-          <h4 className="text-2xl font-extrabold text-primary-10">
-            Pendaftaran & Berkas Berhasil Terkirim!
-          </h4>
-          <p className="text-slate-700 text-sm max-w-md mx-auto">
-            Terima kasih Bapak/Ibu/Saudara <strong>{formData.namaOrangTua}</strong>. Data & berkas registrasi <strong>{formData.namaSantri}</strong> telah tersimpan di sistem.
+        <div className="max-w-4xl mx-auto relative z-10 space-y-4">
+          <span className="inline-block text-amber-400 font-extrabold text-xs tracking-wider uppercase bg-emerald-900 px-3.5 py-1.5 rounded-full border border-amber-500/30">
+            Yayasan Insan Kamil • Est. 2007
+          </span>
+          <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight">
+            Profil & Sejarah Pondok Pesantren Al-Fattah
+          </h1>
+          <p className="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto">
+            Membina generasi santri & mahasiswa berakhlak mulia di Krapyak, Kartasura, Sukoharjo.
           </p>
+        </div>
+      </section>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-20 space-y-16">
+        
+      {/* Sejarah & Latar Belakang */}
+      <section className="bg-white rounded-3xl p-6 sm:p-10 lg:p-12 border border-slate-200 shadow-xl">
+        <div className="w-full">
           
-          <div className="bg-white p-5 rounded-2xl border border-primary-2 text-xs text-slate-700 space-y-2 text-left max-w-md mx-auto shadow-xs">
-            <p className="text-sm font-bold text-primary-10">📌 ID Registrasi: <span className="text-amber-700">{registrationId}</span></p>
-            <p><strong>Santri:</strong> {formData.namaSantri} ({formData.jenisKelamin})</p>
-            <p><strong>Pilihan Kategori:</strong> {formData.kategori}</p>
-            <p><strong>Kontak WA:</strong> {formData.whatsapp}</p>
-            <p className="text-[11px] text-slate-500 pt-1 border-t border-slate-100">
-              Silakan klik tombol di bawah untuk langsung mengirimkan konfirmasi pendaftaran ke WhatsApp resmi Panitia PSB Al-Fattah Kartasura.
+          {/* 1. Badge & Title (Di atas paling awal) */}
+          <div className="mb-6">
+            <span className="inline-block text-emerald-700 font-bold text-xs uppercase tracking-wider bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200 mb-3">
+              Sejarah & Latar Belakang
+            </span>
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-emerald-950">
+              Berdiri Sejak Tahun 2007 di Krapyak Kartasura
+            </h2>
+          </div>
+
+          {/* 2. ELEMEN GAMBAR (Dipasang float-right & responsive) */}
+          <div className="float-none lg:float-right w-full lg:w-1/2 ml-0 lg:ml-8 mb-6 relative rounded-2xl overflow-hidden shadow-2xl border-4 border-amber-400 aspect-[4/3]">
+            <Image
+              src="/images/pengasuh_kyai_nyai.jpg"
+              alt="Pengasuh Pondok Pesantren Al-Fattah"
+              fill
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-emerald-950/20" />
+          </div>
+
+          {/* 3. PARAGRAF TEKS (Otomatis mengalir di samping & menutupi bagian bawah gambar) */}
+          <div className="text-slate-600 text-sm sm:text-base leading-relaxed space-y-4">
+            <p>
+              Pondok Pesantren Al-Fattah berdiri pada tahun 2007 di bawah pengasuh KH. Moh. Mahbub yang berasal dari Probolinggo. KH. Moh. Mahbub lahir pada 10 April 1970. Setelah lulus SD pada tahun 1982, beliau mondok di Pesantren Roudlotut Tholibin, Kecamatan Kademangan, Kota Probolinggo, yang diasuh oleh KH. Abdul Mujib Abdullah, pamannya sendiri. Selama enam tahun lebih menimba ilmu di pesantren tersebut, beliau juga menempuh pendidikan di MTs dan SMA Sunan Giri, Kademangan, Probolinggo. Di pesantren inilah beliau belajar kedisiplinan, bersosialisasi dengan masyarakat, serta memperdalam ilmu agama termasuk kajian kitab kuning.
+            </p>
+            <p>
+              Pada tahun 1989, setelah lulus SMA, beliau melanjutkan pendidikan S-1 jurusan Bahasa Arab di IAIN Malang (kini UIN Malang) dan lulus tahun 1994, sambil tetap mondok di sebuah pesantren di Malang. Tahun 1995, beliau melanjutkan studi S-2 jurusan Ilmu Sosial Politik di Universitas Airlangga, Surabaya. Sebelum menyelesaikan studi S-2, pada akhir tahun 1997 beliau diangkat menjadi dosen di Universitas Lombok, dan akhirnya menyelesaikan gelar S-2 pada tahun 1999.
+            </p>
+            <p>
+              Sebelum mendirikan Pondok Pesantren Al-Fattah, beliau dan istrinya menjadi dosen di UIN Surakarta serta menjadi pengajar di Pondok Pesantren Mahasiswa Darussalam. Sempat mengalami kegagalan mengelola tanah wakaf untuk lembaga pendidikan karena pihak pewakaf lebih memilih mendirikan masjid, pada tahun 2007 beliau kemudian membeli sebidang tanah seluas sekitar 1.000 meter persegi dengan harga yang saat itu masih relatif murah. Berbekal lahan tersebut beserta satu bangunan rumah, beliau merintis pesantren yang diberi nama Al-Fattah, dengan memadukan tradisi pesantren salaf dan pendekatan modern.
+            </p>
+            <p>
+              Pada awal berdirinya, pesantren ini hanya memiliki 7 Santri Putri dan 6 Santri Putra. Namun, jumlah santri yang mendaftar terus meningkat secara signifikan dari tahun ke tahun. Hingga saat ini, jumlah santri mukim di Pondok Pesantren Al-Fattah tercatat kurang lebih 187 orang, terdiri dari 135 Santri Putri dan 52 Santri Putra.
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">
-            <Button 
-              asChild
-              className="bg-primary-8 hover:bg-primary-9 text-white font-extrabold px-6 py-6"
-            >
-              <a 
-                href={`https://wa.me/62882006454771?text=${getWaMessage()}`} 
-                target="_blank" 
-                rel="noreferrer"
-              >
-                <PhoneCall className="w-4 h-4 mr-2 text-amber-400" />
-                Konfirmasi via WhatsApp Panitia
-              </a>
-            </Button>
-            <Button 
-              onClick={() => setSubmitted(false)}
-              variant="outline"
-              className="border-slate-300 text-slate-700 font-bold"
-            >
-              Isi Formulir Baru
+        </div>
+      </section>
+
+        {/* Motto Pesantren Banner */}
+        <section className="bg-gradient-to-r from-emerald-900 to-emerald-950 text-white rounded-3xl p-8 sm:p-12 border border-emerald-800 shadow-xl text-center space-y-4">
+          <span className="inline-block text-amber-400 font-extrabold text-xs uppercase tracking-wider bg-emerald-950 px-3 py-1 rounded-full border border-amber-500/30">
+            Motto Pesantren
+          </span>
+          <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-amber-300 italic">
+            &ldquo;Berbudi Tinggi, Berbadan Sehat, Berpengetahuan Luas, dan Berpikiran Bebas&rdquo;
+          </h2>
+          <p className="text-slate-300 text-sm max-w-2xl mx-auto">
+            Empat pilar utama kepribadian santri Al-Fattah yang menjadi komitmen dalam pembentukan akhlaq, jasmani, intelektualitas, serta kemandirian berpikir.
+          </p>
+        </section>
+
+        {/* Visi & Misi */}
+        <section id="visi-misi" className="space-y-8">
+          <div className="text-center max-w-3xl mx-auto space-y-3">
+            <span className="inline-block text-emerald-700 font-bold text-xs uppercase tracking-wider bg-emerald-100 px-3.5 py-1.5 rounded-full border border-emerald-200">
+              Arah & Tujuan Lembaga
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-emerald-950">
+              Visi & Misi Pesantren
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Visi */}
+            <div className="bg-gradient-to-br from-emerald-900 to-emerald-950 text-white p-8 rounded-3xl border border-emerald-700 shadow-xl space-y-4">
+              <div className="w-12 h-12 rounded-2xl bg-amber-400 text-emerald-950 flex items-center justify-center font-bold">
+                <Target className="w-6 h-6" />
+              </div>
+              <h3 className="text-2xl font-extrabold text-amber-300">Visi Pesantren</h3>
+              <p className="text-slate-200 text-base leading-relaxed">
+                &ldquo;Terwujudnya santri yang berkualitas dalam intelektualitas, spiritualitas, dan religiusitas dan Terwujudnya masyarakat Indonesia yang beradab, berkeadilan, bermartabat, serta saling menghormati.&rdquo;
+              </p>
+            </div>
+
+            {/* Misi */}
+            <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-xl space-y-4">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold">
+                <Compass className="w-6 h-6" />
+              </div>
+              <h3 className="text-2xl font-extrabold text-emerald-950">Misi Pesantren</h3>
+              <ul className="space-y-2.5 text-sm text-slate-700 font-medium">
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span>Menyelenggarakan pendidikan kader muslim berkualitas dalam tafaqquh fiddin yang menganut paham Ahlusunnah wal Jama&ldquo;ah.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span>Menyelenggarakan program takhasus qur&ldquo;an dan takhasus kitab untuk membangun syuhud tsaqofi dan syuhud khadori.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span>Mencetak generasi yang cakap dalam memprakarsai pembangunan masyarakat.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span>Menjalin kerjasama dengan berbagai pihak untuk membangun kesejahteraan umat.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* Panca Jiwa Pesantren */}
+        <section className="bg-emerald-950 text-white rounded-3xl p-8 sm:p-12 border border-emerald-800 shadow-2xl space-y-8">
+          <div className="text-center max-w-2xl mx-auto space-y-2">
+            <span className="inline-block text-amber-400 font-bold text-xs uppercase tracking-wider bg-emerald-900 px-3 py-1 rounded-full border border-emerald-700">
+              Nilai Filosofi
+            </span>
+            <h2 className="text-3xl font-extrabold">Panca Jiwa Pondok Pesantren Al-Fattah</h2>
+            <p className="text-slate-300 text-sm">
+              Prinsip fondasi kehidupaan santri Al-Fattah dalam bermasyarakat dan menuntut ilmu.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            {[
+              { title: "Keikhlasan", desc: "Semata-mata menuntut ilmu dan beramal mencari keridhaan Allah SWT." },
+              { title: "Kesederhanaan", desc: "Bersikap bersahaja, bersyukur, dan tidak berlebihan." },
+              { title: "Berdikari", desc: "Kemandirian mental dan keterampilan diri santri tanpa bergantung pada orang lain." },
+              { title: "Ukhuwah Islamiyah", desc: "Persaudaraan erat penuh kasih sayang antar sesama santri dan masyarakat." },
+              { title: "Jiwa Bebas", desc: "Bebas berkreasi, berpikir positif dan berwawasan luas dalam bingkai syariat Islam." },
+            ].map((jiwa, idx) => (
+              <div key={idx} className="bg-emerald-900/60 p-5 rounded-2xl border border-emerald-800 space-y-2 text-center">
+                <div className="w-8 h-8 rounded-full bg-amber-400 text-emerald-950 font-bold mx-auto flex items-center justify-center text-sm">
+                  {idx + 1}
+                </div>
+                <h4 className="font-extrabold text-base text-amber-300">{jiwa.title}</h4>
+                <p className="text-xs text-slate-300 leading-relaxed">{jiwa.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Pengasuh Section */}
+        <section className="space-y-8">
+          <div className="text-center max-w-2xl mx-auto space-y-2">
+            <span className="inline-block text-emerald-700 font-bold text-xs uppercase tracking-wider bg-emerald-100 px-3 py-1 rounded-full">
+              Pimpinan & Pengasuh
+            </span>
+            <h2 className="text-3xl font-extrabold text-emerald-950">Pengasuh Pondok Pesantren</h2>
+          </div>
+
+          <div className="max-w-3xl mx-auto bg-white p-8 rounded-3xl border border-slate-200 shadow-lg text-center space-y-4">
+            <div className="relative w-40 h-40 mx-auto rounded-full overflow-hidden border-4 border-amber-400 shadow-md">
+              <Image src="/images/pengasuh_kyai_nyai.jpg" alt="Pengasuh Pesantren" fill className="object-cover" />
+            </div>
+            <div>
+              <h3 className="font-extrabold text-2xl text-emerald-950">Dr. KH. Moh. Mahbub, S.Ag., M.Si.</h3>
+              <p className="font-bold text-amber-700 text-base">& Dr. Hj. Kamila Adnani, M.Si.</p>
+              <p className="text-xs text-slate-500 mt-1">Pengasuh Utama Pondok Pesantren Al-Fattah Krapyak Kartasura Sukoharjo</p>
+            </div>
+            <p className="text-slate-600 text-sm leading-relaxed max-w-xl mx-auto italic">
+              &ldquo;Mendidik santri bukan hanya mengajar bacaan kitab, tetapi menanamkan ruh keikhlasan dan akhlaq yang mulia dalam kehidupan sehari-hari.&rdquo;
+            </p>
+          </div>
+        </section>
+
+        {/* CTA PSB */}
+        <div className="bg-gradient-to-r from-emerald-900 to-emerald-950 text-white p-8 sm:p-12 rounded-3xl border border-amber-500/40 text-center space-y-4">
+          <h3 className="text-2xl sm:text-3xl font-extrabold">Tertarik Bergabung Menjadi Santri Al-Fattah?</h3>
+          <p className="text-slate-300 text-sm max-w-xl mx-auto">
+            Penerimaan Santri Baru (PSB) T.A. 2026/2027 telah dibuka untuk santri mukim, diniyah, dan santri mahasiswa.
+          </p>
+          <div className="pt-2 flex justify-center gap-4">
+            <Button asChild className="bg-amber-500 hover:bg-amber-400 text-emerald-950 font-bold px-8 py-6">
+              <Link href="/psb">
+                <GraduationCap className="w-5 h-5 mr-2" />
+                Daftar PSB Online
+              </Link>
             </Button>
           </div>
         </div>
-      ) : (
-        <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Section 1: Data Diri */}
-          <div className="space-y-4">
-            <h4 className="text-sm font-bold text-primary-9 uppercase tracking-wider border-b pb-1">
-              1. Data Diri Calon Santri
-            </h4>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">
-                  Nama Lengkap Calon Santri *
-                </label>
-                <Input
-                  required
-                  placeholder="Contoh: Muhammad Ammar Syafi'i"
-                  value={formData.namaSantri}
-                  onChange={(e) => setFormData({ ...formData, namaSantri: e.target.value })}
-                  className="rounded-xl border-slate-300 focus:ring-primary-6"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">
-                  Nama Orang Tua / Wali *
-                </label>
-                <Input
-                  required
-                  placeholder="Contoh: H. Ahmad Subandi"
-                  value={formData.namaOrangTua}
-                  onChange={(e) => setFormData({ ...formData, namaOrangTua: e.target.value })}
-                  className="rounded-xl border-slate-300 focus:ring-primary-6"
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">
-                  Kategori Pendaftaran Santri *
-                </label>
-                <select
-                  value={formData.kategori}
-                  onChange={(e) => setFormData({ ...formData, kategori: e.target.value })}
-                  className="w-full h-10 px-3 rounded-xl border border-slate-300 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-primary-6 font-semibold text-slate-800"
-                >
-                  <option value="Santri Mukim Program Kitab">Santri Mukim Program Kitab</option>
-                  <option value="Santri Mukim Program Tahfidz">Santri Mukim Program Tahfidz</option>
-                  <option value="Santri Kalong Program Kitab">Santri Kalong Program Kitab</option>
-                  <option value="Santri Kalong Program Tahfidz">Santri Kalong Program Tahfidz</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">
-                  Jenis Kelamin Santri *
-                </label>
-                <div className="flex gap-4 pt-2">
-                  <label className="flex items-center gap-2 text-sm font-medium text-slate-700 cursor-pointer">
-                    <input
-                      type="radio"
-                      name="jenisKelamin"
-                      value="putra"
-                      checked={formData.jenisKelamin === "putra"}
-                      onChange={() => setFormData({ ...formData, jenisKelamin: "putra" })}
-                      className="accent-primary-7"
-                    />
-                    Santri Putra
-                  </label>
-                  <label className="flex items-center gap-2 text-sm font-medium text-slate-700 cursor-pointer">
-                    <input
-                      type="radio"
-                      name="jenisKelamin"
-                      value="putri"
-                      checked={formData.jenisKelamin === "putri"}
-                      onChange={() => setFormData({ ...formData, jenisKelamin: "putri" })}
-                      className="accent-primary-7"
-                    />
-                    Santri Putri
-                  </label>
-                </div>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">
-                  No. WhatsApp Aktif *
-                </label>
-                <Input
-                  required
-                  type="tel"
-                  placeholder="081234567890"
-                  value={formData.whatsapp}
-                  onChange={(e) => setFormData({ ...formData, whatsapp: e.target.value })}
-                  className="rounded-xl border-slate-300"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">
-                  Email Aktif
-                </label>
-                <Input
-                  type="email"
-                  placeholder="contoh@gmail.com"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="rounded-xl border-slate-300"
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">
-                  Perguruan Tinggi / Sekolah
-                </label>
-                <Input
-                  placeholder="Contoh: UIN RM Said Surakarta"
-                  value={formData.perguruanTinggi}
-                  onChange={(e) => setFormData({ ...formData, perguruanTinggi: e.target.value })}
-                  className="rounded-xl border-slate-300"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">
-                  Kota / Kabupaten Asal *
-                </label>
-                <Input
-                  required
-                  placeholder="Contoh: Surakarta / Sukoharjo"
-                  value={formData.kotaAsal}
-                  onChange={(e) => setFormData({ ...formData, kotaAsal: e.target.value })}
-                  className="rounded-xl border-slate-300"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1">
-                Catatan / Riwayat Mengaji / Kitab yang Pernah Dipelajari
-              </label>
-              <textarea
-                rows={2}
-                placeholder="Contoh: Pernah mengaji Amtsilati Jilid 1-3, hafal Juz 30, mahasiswa Jurusan PAI Semester 1."
-                value={formData.catatan}
-                onChange={(e) => setFormData({ ...formData, catatan: e.target.value })}
-                className="w-full p-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-primary-6"
-              />
-            </div>
-          </div>
-
-          {/* Section 2: Upload 5 Berkas */}
-          <div className="space-y-4 pt-2">
-            <h4 className="text-sm font-bold text-primary-9 uppercase tracking-wider border-b pb-1 flex items-center justify-between">
-              <span>2. Upload Berkas Persyaratan</span>
-              <span className="text-[10px] text-slate-500 font-normal normal-case">Format: JPG, PNG, PDF (Maks 5 MB / file)</span>
-            </h4>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {/* 1. Pas Foto */}
-              <div className="bg-slate-50 p-3 rounded-xl border border-slate-200">
-                <label className="block text-xs font-bold text-slate-800 mb-1 flex items-center gap-1">
-                  <Upload className="w-3.5 h-3.5 text-primary-7" />
-                  1. Pas Foto 3x4 / 4x6 (Resmi) *
-                </label>
-                <input
-                  required
-                  type="file"
-                  accept="image/png, image/jpeg, image/jpg"
-                  onChange={(e) => handleFileChange("pasFoto", e.target.files?.[0] || null)}
-                  className="w-full text-xs text-slate-600 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-primary-7 file:text-white hover:file:bg-primary-8 border border-slate-300 rounded-lg p-1 bg-white cursor-pointer"
-                />
-                {fileErrors.pasFoto && <p className="text-red-600 text-[11px] mt-1">⚠️ {fileErrors.pasFoto}</p>}
-                {files.pasFoto && <p className="text-primary-7 text-[11px] mt-1 flex items-center gap-1"><FileCheck className="w-3 h-3"/> Siap diunggah</p>}
-              </div>
-
-              {/* 2. Kartu Keluarga (KK) */}
-              <div className="bg-slate-50 p-3 rounded-xl border border-slate-200">
-                <label className="block text-xs font-bold text-slate-800 mb-1 flex items-center gap-1">
-                  <Upload className="w-3.5 h-3.5 text-primary-7" />
-                  2. Scan / Foto Kartu Keluarga (KK) *
-                </label>
-                <input
-                  required
-                  type="file"
-                  accept="image/png, image/jpeg, image/jpg, application/pdf"
-                  onChange={(e) => handleFileChange("kk", e.target.files?.[0] || null)}
-                  className="w-full text-xs text-slate-600 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-primary-7 file:text-white hover:file:bg-primary-8 border border-slate-300 rounded-lg p-1 bg-white cursor-pointer"
-                />
-                {fileErrors.kk && <p className="text-red-600 text-[11px] mt-1">⚠️ {fileErrors.kk}</p>}
-                {files.kk && <p className="text-primary-7 text-[11px] mt-1 flex items-center gap-1"><FileCheck className="w-3 h-3"/> Siap diunggah</p>}
-              </div>
-
-              {/* 3. KTP / Kartu Pelajar */}
-              <div className="bg-slate-50 p-3 rounded-xl border border-slate-200">
-                <label className="block text-xs font-bold text-slate-800 mb-1 flex items-center gap-1">
-                  <Upload className="w-3.5 h-3.5 text-primary-7" />
-                  3. Scan / Foto KTP atau Kartu Pelajar *
-                </label>
-                <input
-                  required
-                  type="file"
-                  accept="image/png, image/jpeg, image/jpg, application/pdf"
-                  onChange={(e) => handleFileChange("ktp", e.target.files?.[0] || null)}
-                  className="w-full text-xs text-slate-600 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-primary-7 file:text-white hover:file:bg-primary-8 border border-slate-300 rounded-lg p-1 bg-white cursor-pointer"
-                />
-                {fileErrors.ktp && <p className="text-red-600 text-[11px] mt-1">⚠️ {fileErrors.ktp}</p>}
-                {files.ktp && <p className="text-primary-7 text-[11px] mt-1 flex items-center gap-1"><FileCheck className="w-3 h-3"/> Siap diunggah</p>}
-              </div>
-
-              {/* 4. Ijazah / SKL */}
-              <div className="bg-slate-50 p-3 rounded-xl border border-slate-200">
-                <label className="block text-xs font-bold text-slate-800 mb-1 flex items-center gap-1">
-                  <Upload className="w-3.5 h-3.5 text-primary-7" />
-                  4. Scan Ijazah Terakhir / SKL *
-                </label>
-                <input
-                  required
-                  type="file"
-                  accept="image/png, image/jpeg, image/jpg, application/pdf"
-                  onChange={(e) => handleFileChange("ijazah", e.target.files?.[0] || null)}
-                  className="w-full text-xs text-slate-600 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-primary-7 file:text-white hover:file:bg-primary-8 border border-slate-300 rounded-lg p-1 bg-white cursor-pointer"
-                />
-                {fileErrors.ijazah && <p className="text-red-600 text-[11px] mt-1">⚠️ {fileErrors.ijazah}</p>}
-                {files.ijazah && <p className="text-primary-7 text-[11px] mt-1 flex items-center gap-1"><FileCheck className="w-3 h-3"/> Siap diunggah</p>}
-              </div>
-            </div>
-
-            {/* 5. Berkas Pendukung (Opsional) */}
-            <div className="bg-slate-50 p-3 rounded-xl border border-slate-200">
-              <label className="block text-xs font-bold text-slate-800 mb-1 flex items-center gap-1">
-                <Upload className="w-3.5 h-3.5 text-primary-7" />
-                5. Berkas Pendukung / Surat Pernyataan / Sertifikat (Opsional)
-              </label>
-              <input
-                type="file"
-                accept="image/png, image/jpeg, image/jpg, application/pdf"
-                onChange={(e) => handleFileChange("suratBebasNarkoba", e.target.files?.[0] || null)}
-                className="w-full text-xs text-slate-600 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-primary-7 file:text-white hover:file:bg-primary-8 border border-slate-300 rounded-lg p-1 bg-white cursor-pointer"
-              />
-              {fileErrors.suratBebasNarkoba && <p className="text-red-600 text-[11px] mt-1">⚠️ {fileErrors.suratBebasNarkoba}</p>}
-              {files.suratBebasNarkoba && <p className="text-primary-7 text-[11px] mt-1 flex items-center gap-1"><FileCheck className="w-3 h-3"/> Siap diunggah</p>}
-            </div>
-          </div>
-
-          {/* Tombol Submit & Indikator Status */}
-          <Button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-gradient-to-r from-primary-8 to-primary-10 hover:from-primary-9 hover:to-black text-white font-extrabold py-6 text-base rounded-xl shadow-lg border border-amber-400/30"
-          >
-            {loading ? (
-              <span className="flex items-center gap-2">
-                <Loader2 className="w-5 h-5 animate-spin" />
-                {uploadStatus || "Memproses..."}
-              </span>
-            ) : (
-              <span className="flex items-center gap-2">
-                <Send className="w-5 h-5 text-amber-400" />
-                Kirim Formulir & Unggah Berkas PSB
-              </span>
-            )}
-          </Button>
-        </form>
-      )}
-    </div>
+      </div>
+    </main>
   );
 }
