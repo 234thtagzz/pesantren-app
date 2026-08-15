@@ -3,7 +3,6 @@ import { PengasuhSection } from "@/components/home/pengasuh-section";
 import { ProgramSection } from "@/components/home/program-section";
 import { KitabSection } from "@/components/home/kitab-section";
 import { FasilitasSection } from "@/components/home/fasilitas-section";
-import { AgendaSection } from "@/components/home/agenda-section";
 import { TestimoniSection } from "@/components/home/testimoni-section";
 import { PsbBanner } from "@/components/home/psb-banner";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
@@ -15,7 +14,7 @@ export const metadata = {
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-slate-50 overflow-x-hidden">
+    <main className="min-h-screen bg-slate-50 overflow-hidden">
       <HeroSection />
 
       <ScrollReveal direction="up" delay={100}>
@@ -32,10 +31,6 @@ export default function HomePage() {
 
       <ScrollReveal direction="up" delay={100}>
         <FasilitasSection />
-      </ScrollReveal>
-
-      <ScrollReveal direction="up" delay={100}>
-        <AgendaSection />
       </ScrollReveal>
 
       <ScrollReveal direction="up" delay={100}>

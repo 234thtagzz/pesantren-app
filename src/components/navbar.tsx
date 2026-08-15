@@ -20,7 +20,7 @@ import { Button } from "@/components/ui/button";
 const navLinks: { href: string; label: string; badge?: string }[] = [
   { href: "/", label: "Beranda" },
   { href: "/profile", label: "Profil & Sejarah" },
-  { href: "/program", label: "Program & Kitab" },
+  { href: "/program", label: "Program Pesantren" },
   { href: "/fasilitas", label: "Fasilitas" },
   { href: "/berita", label: "Berita & Kegiatan" },
   { href: "/psb", label: "PSB 2026/2027" },

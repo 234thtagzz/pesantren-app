@@ -88,10 +88,10 @@ export function ProfileView() {
             Motto Pesantren
           </span>
           <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-amber-300 italic">
-            &ldquo;Berbudi Tinggi, Berbadan Sehat, Berpengetahuan Luas, dan Berpikiran Bebas&rdquo;
+            &ldquo;Berilmu, Berakhlak, dan Bermanfaat bagi Masyarakat.&rdquo;
           </h2>
           <p className="text-slate-300 text-sm max-w-2xl mx-auto">
-            Empat pilar utama kepribadian santri Al-Fattah yang menjadi komitmen dalam pembentukan akhlaq, jasmani, intelektualitas, serta kemandirian berpikir.
+            Motto utama kepribadian santri Al-Fattah yang menjadi komitmen dalam pembentukan taqwa untuk mendekatkan diri pada Sang Pencipta.
           </p>
         </section>
 
@@ -152,19 +152,17 @@ export function ProfileView() {
             <span className="inline-block text-amber-400 font-bold text-xs uppercase tracking-wider bg-emerald-900 px-3 py-1 rounded-full border border-emerald-700">
               Nilai Filosofi
             </span>
-            <h2 className="text-3xl font-extrabold">Panca Jiwa Pondok Pesantren Al-Fattah</h2>
+            <h2 className="text-3xl font-extrabold">Tri Pilar Pondok Pesantren Al-Fattah</h2>
             <p className="text-slate-300 text-sm">
-              Prinsip fondasi kehidupaan santri Al-Fattah dalam bermasyarakat dan menuntut ilmu.
+              membentuk pribadi yang kokoh imannya, tajam pikirannya, dan mulia akhlaknya.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
-              { title: "Keikhlasan", desc: "Semata-mata menuntut ilmu dan beramal mencari keridhaan Allah SWT." },
-              { title: "Kesederhanaan", desc: "Bersikap bersahaja, bersyukur, dan tidak berlebihan." },
-              { title: "Berdikari", desc: "Kemandirian mental dan keterampilan diri santri tanpa bergantung pada orang lain." },
-              { title: "Ukhuwah Islamiyah", desc: "Persaudaraan erat penuh kasih sayang antar sesama santri dan masyarakat." },
-              { title: "Jiwa Bebas", desc: "Bebas berkreasi, berpikir positif dan berwawasan luas dalam bingkai syariat Islam." },
+              { title: "Kecerdasan Intelektual", desc: "Al-Fattah memadukan kedalaman ilmu klasik (salaf) dengan kecakapan menjawab tantangan zaman." },
+              { title: "Kecerdasan Emosional", desc: "Kehidupan berasrama menjadi ruang tumbuh bagi adab, empati, dan kepedulian sosial santri (Learning while Serving)." },
+              { title: "Kecerdasan Spiritual", desc: "Kedekatan kepada Allah SWT adalah fondasi tertinggi dalam setiap langkah pendidikan di Al-Fattah. " },
             ].map((jiwa, idx) => (
               <div key={idx} className="bg-emerald-900/60 p-5 rounded-2xl border border-emerald-800 space-y-2 text-center">
                 <div className="w-8 h-8 rounded-full bg-amber-400 text-emerald-950 font-bold mx-auto flex items-center justify-center text-sm">

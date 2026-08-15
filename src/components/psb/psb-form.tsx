@@ -201,15 +201,15 @@ export function PsbForm() {
     const text = `Assalamu'alaikum Panitia PSB Pondok Pesantren Al-Fattah Krapyak Kartasura,
 
 Saya ingin konfirmasi Pendaftaran Santri Baru Online:
-📌 *ID Registrasi:* ${registrationId}
-👤 *Nama Santri:* ${formData.namaSantri}
-🚻 *Jenis Kelamin:* Santri ${formData.jenisKelamin}
-📚 *Kategori:* ${formData.kategori}
-🎓 *Instansi/Perguruan Tinggi:* ${formData.perguruanTinggi || "-"}
-👨‍👩‍👦 *Nama Orang Tua/Wali:* ${formData.namaOrangTua}
-📱 *WhatsApp:* ${formData.whatsapp}
-📧 *Email:* ${formData.email || "-"}
-📍 *Kota Asal:* ${formData.kotaAsal}
+ *ID Registrasi:* ${registrationId}
+ *Nama Santri:* ${formData.namaSantri}
+ *Jenis Kelamin:* Santri ${formData.jenisKelamin}
+ *Kategori:* ${formData.kategori}
+ *Instansi/Perguruan Tinggi:* ${formData.perguruanTinggi || "-"}
+ *Nama Orang Tua/Wali:* ${formData.namaOrangTua}
+ *WhatsApp:* ${formData.whatsapp}
+ *Email:* ${formData.email || "-"}
+ *Kota Asal:* ${formData.kotaAsal}
 
 Seluruh berkas persyaratan & bukti pembayaran telah diunggah via website. Mohon informasi verifikasi selanjutnya. Terima kasih.`;
     return encodeURIComponent(text);
@@ -242,7 +242,7 @@ Seluruh berkas persyaratan & bukti pembayaran telah diunggah via website. Mohon 
           </p>
           
           <div className="bg-white p-5 rounded-2xl border border-primary-2 text-xs text-slate-700 space-y-2 text-left max-w-md mx-auto shadow-xs">
-            <p className="text-sm font-bold text-primary-10">📌 ID Registrasi: <span className="text-amber-700">{registrationId}</span></p>
+            <p className="text-sm font-bold text-primary-10"> ID Registrasi: <span className="text-amber-700">{registrationId}</span></p>
             <p><strong>Santri:</strong> {formData.namaSantri} ({formData.jenisKelamin})</p>
             <p><strong>Pilihan Kategori:</strong> {formData.kategori}</p>
             <p><strong>Kontak WA:</strong> {formData.whatsapp}</p>
@@ -554,6 +554,7 @@ Seluruh berkas persyaratan & bukti pembayaran telah diunggah via website. Mohon 
                 {files.berkasPendukung && <p className="text-primary-7 text-[11px] mt-1 flex items-center gap-1"><FileCheck className="w-3 h-3"/> Siap diunggah</p>}
               </div>
             </div>
+            <p className="text-slate-600 text-xs sm:text-sm mt-1">Biaya Pendaftaran Online Rp50.000 ke Rekening 6011001604(Bank Jateng)</p>
           </div>
 
           {/* Tombol Submit */}

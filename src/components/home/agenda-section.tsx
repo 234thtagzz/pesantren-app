@@ -1,24 +1,23 @@
 import { Clock, Sparkles, CheckCircle2 } from "lucide-react";
 
 const dailyAgenda = [
-  { time: "04.00 - 05.00", activity: "Shalat Subuh Berjamaah, Mujahadah Dzikir Pagi & Kultum" },
-  { time: "05.00 - 06.30", activity: "Setoran Hafalan Al-Qur'an & Sorogan Kitab Amtsilati / Kitab Kuning" },
-  { time: "06.30 - 07.30", activity: "Sarapan Pagi, Persiapan Kuliah / Sekolah & Kebersihan Asrama" },
-  { time: "07.30 - 15.00", activity: "Aktivitas Akademik Mahasiswa (Kampus UIN / Perguruan Tinggi) & Mandiri" },
-  { time: "15.30 - 17.00", activity: "Shalat Ashar Berjamaah & Kajian Kitab Fathul Qorib / Nashoihul Ibad" },
-  { time: "17.00 - 18.00", activity: "Kegiatan Ekstrakurikuler, Olahraga, & Olah Raga Jasmani" },
-  { time: "18.15 - 20.00", activity: "Maghrib & Isya Berjamaah, Bandongan Alfiyah / Ta'lim Muta'allim" },
-  { time: "20.00 - 21.30", activity: "Muhadhoroh 3 Bahasa (Kamis Malam) / Bahtsul Masail & Belajar Mandiri" },
-  { time: "21.30 - 04.00", activity: "Istirahat Malam Santri" }
+  { time: "04.30 - 05.00", activity: "Jama'ah Shubuh & Dzikiran" },
+  { time: "05.30 - 06.30", activity: "Mengaji Kelas" },
+  { time: "06.35 - selesai", activity: "Piket" },
+  { time: "16.00 - 17.00", activity: "Ngaji Bandongan Sore / Waqiahan & Hizb Bahr" },
+  { time: "17.30 - 18.30", activity: "Jama'ah Maghrib & Dzikiran" },
+  { time: "18.30 - 19.00", activity: "Kultum Santri (Public Speaking)" },
+  { time: "19.00 - 19.30", activity: "Jama'ah Isya' & Dzikiran" },
+  { time: "20.00 - 21.30", activity: "Mengaji Kelas" },
+  { time: "20.00 - 21.30", activity: "Muhadharah Santri (Public Speaking)" },
+  { time: "22.00", activity: "Jam Malam (Istirahat)" }
 ];
 
 const extras = [
-  { name: "Hadroh & Sholawat Al-Fattah", category: "Seni & Rebana Islam" },
-  { name: "Muhadhoroh 3 Bahasa", category: "Public Speaking & Arab/Inggris" },
-  { name: "Bahtsul Masail Santri", category: "Forum Diskusi Fiqih" },
-  { name: "Entrepreneurship Santri", category: "Kewirausahaan Berdikari" },
-  { name: "Media & DKV Santri", category: "Jurnalistik & Digital" },
-  { name: "Klub Olahraga & Badminton", category: "Kebugaran Jasmani" },
+  { name: "Hadroh & Kaligrafi", category: "Seni & Budaya" },
+  { name: "Bahasa arab, Inggris & Jurnalistik", category: "Bahasa & Literasi" },
+  { name: "Tata Boga", category: "Keterampilan & Kemandirian" },
+  { name: "Pagar Nusa", category: "Bela Diri & Fisik" },
 ];
 
 export function AgendaSection() {
@@ -72,10 +71,10 @@ export function AgendaSection() {
                   Bakat & Kreativitas Santri
                 </span>
                 <h3 className="text-2xl font-extrabold text-white mt-2">
-                  Ekstrakurikuler & Organisasi Santri
+                  Ekstrakurikuler Pesantren Al-Fattah
                 </h3>
                 <p className="text-slate-300 text-xs mt-1">
-                  Wadah mengasah soft skill kepemimpinan, seni Islam, dan wirausaha santri Al-Fattah.
+                  Wadah mengasah soft skill kemandirian, literasi, dan seni islam.
                 </p>
               </div>
 
@@ -94,16 +93,14 @@ export function AgendaSection() {
                 ))}
               </div>
 
-              <div className="pt-2 border-t border-primary-8 text-center">
-                <p className="text-xs text-slate-300">
-                  🌟 Rutin menyelenggarakan Peringatan Hari Besar Islam (PHBI), Pengajian Umum, dan Pentas Seni Santri.
-                </p>
-              </div>
+            </div>
+            <div className="bg-primary-9/80 border border-primary-7/60 rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl backdrop-blur-md">
+              <p className="text-slate-300 text-sm sm:text-base">
+                <strong>Keterangan : </strong>kegiatan bertanda &ldquo;Malam Minggu&ldquo; (Kultum Santri dan Muhadharah Santri) menggantikan slot mengaji kelas malam pada malam Minggu.
+              </p>
             </div>
           </div>
-
         </div>
-
       </div>
     </section>
   );

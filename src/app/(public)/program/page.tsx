@@ -1,10 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
-import {  
-  CheckCircle2, 
-  ArrowRight,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import { AgendaSection } from "@/components/home/agenda-section";
 
 export const metadata = {
   title: "Program & Kajian Kitab Kuning | Pondok Pesantren Al-Fattah Kartasura",
@@ -13,8 +9,9 @@ export const metadata = {
 
 export default function ProgramPage() {
   return (
-    <main className="min-h-screen bg-slate-50 pb-20">
+    <main className="min-h-screen bg-slate-50">
       {/* Header Banner */}
+      
       <section className="relative bg-primary-10 text-white py-20 px-4 sm:px-6 lg:px-8 text-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
@@ -31,10 +28,10 @@ export default function ProgramPage() {
             Kurikulum Salaf-Modern
           </span>
           <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight">
-            Program Pendidikan & Silabus Kitab Kuning
+            Program Pendidikan & keseharian Santri
           </h1>
           <p className="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto">
-            Pendalaman ilmu agama Islam melalui tradisi kitab turats, hafalan Qur&apos;an, dan pembinaan santri mahasiswa Krapyak.
+            Pendalaman ilmu agama Islam melalui pendidikan dan kebiasaan dalam membinaan intelektual Jiwa dan Kebiasaan santri Al-Fattah.
           </p>
         </div>
       </section>
@@ -42,85 +39,56 @@ export default function ProgramPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-20 space-y-16">
         
         {/* 1. Gramatika Bahasa Arab (Nahwu Sharaf) */}
-        <section id="turats-nahwu" className="bg-white rounded-3xl p-8 sm:p-12 border border-slate-200 shadow-xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          <div className="lg:col-span-6 space-y-4">
-            <span className="bg-amber-100 text-amber-900 font-bold text-xs px-3 py-1 rounded-full border border-amber-300">
-              Fiqih, Tasawuf & Tahfizh
-            </span>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-primary-10">
-              Kitab Fathul Qorib, Ta&apos;lim Muta&apos;allim & Tahfizh
-            </h2>
-            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-              Program Tahfidz Al-Qur&apos;an di Pondok Pesantren Al-Fattah diselenggarakan untuk mencetak <strong> generasi penghafal Al-Qur&apos;an 30 Juz mutqin </strong>, beradab, serta memiliki ketepatan bacaan tajwid dan makhraj yang baik. Santri baru yang belum lancar membaca Al-Qur&apos;an terlebih dahulu dibimbing melalui kelas tahsin sebelum masuk ke tahap matrikulasi hafalan Juz 30 dan surat-surat pilihan, baru kemudian resmi mengikuti program Tahfidz reguler. Program ini didampingi oleh ustaz-ustazah pengampu yang diangkat dari santri senior berkualifikasi serta diuji dengan syahadah bagi santri yang telah menuntaskan hafalan 15 juz. Sebagai penunjang, santri Tahfidz juga mengikuti kajian kitab At-Tibyan fi Adabi Hamalatil Qur'an karya Imam An-Nawawi untuk memperdalam adab dan fikih seputar Al-Qur&apos;an.
-            </p>
-            
-          </div>
-          <div className="lg:col-span-6">
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-amber-400 aspect-[16/10]">
-              <Image src="/images/kitab_kuning_study.jpg" alt="Kajian Kitab Kuning" fill className="object-cover" />
+        <ScrollReveal direction="up" delay={100}>
+          <section id="turats-nahwu" className="bg-white rounded-3xl p-8 sm:p-12 border border-slate-200 shadow-xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-6 space-y-4">
+              <span className="inline-block bg-amber-100 text-amber-900 font-bold text-xs px-3 py-1 rounded-full border border-amber-300">
+                Program Tahfizh
+              </span>
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-primary-10">
+                Kitab Fathul Qorib, Ta&apos;lim Muta&apos;allim & Tahfizh
+              </h2>
+              <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+                Program Tahfidz Al-Qur&apos;an di Pondok Pesantren Al-Fattah diselenggarakan untuk mencetak <strong> generasi penghafal Al-Qur&apos;an 30 Juz mutqin </strong>, beradab, serta memiliki ketepatan bacaan tajwid dan makhraj yang baik. Santri baru yang belum lancar membaca Al-Qur&apos;an terlebih dahulu dibimbing melalui kelas tahsin sebelum masuk ke tahap matrikulasi hafalan Juz 30 dan surat-surat pilihan, baru kemudian resmi mengikuti program Tahfidz reguler. Program ini didampingi oleh ustaz-ustazah pengampu yang diangkat dari santri senior berkualifikasi serta diuji dengan syahadah bagi santri yang telah menuntaskan hafalan 15 juz. Sebagai penunjang, santri Tahfidz juga mengikuti kajian kitab At-Tibyan fi Adabi Hamalatil Qur'an karya Imam An-Nawawi untuk memperdalam adab dan fikih seputar Al-Qur&apos;an.
+              </p>
+              
             </div>
-          </div>
-        </section>
-
-        {/* 2. Pesantren Mahasiswa */}
-        <section id="pesantren-mahasiswa" className="bg-white rounded-3xl p-8 sm:p-12 border border-slate-200 shadow-xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          <div className="lg:col-span-6 order-2 lg:order-1">
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-primary-6 aspect-[16/10]">
-              <Image src="/images/al_fattah_hero.jpg" alt="Pesantren Mahasiswa Krapyak" fill className="object-cover" />
-            </div>
-          </div>
-          <div className="lg:col-span-6 order-1 lg:order-2 space-y-4">
-            <span className="bg-primary-1 text-primary-9 font-bold text-xs px-3 py-1 rounded-full border border-primary-3">
-              Pesantren Mahasiswa
-            </span>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-primary-10">
-              Program Santri Mahasiswa (Mukim & Kalong)
-            </h2>
-            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-              Pesantren Al-Fattah menyelenggarakan program khusus mahasiswa yang menempuh kuliah di UIN Raden Mas Said Surakarta (±400m dari lokasi), UMS, UNS, maupun universitas sekitarnya. Santri dapat kuliah dengan tenang sambil tetap mengaji dan membentuk karakter keislaman.
-            </p>
-            <div className="space-y-2 text-sm text-slate-700 font-medium">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-primary-6" />
-                <span>Jadwal Pengajian Disesuaikan Jam Kuliah Santri</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-primary-6" />
-                <span>Fasilitas Asrama Krapyak & WiFi Cepat untuk Riset Kampus</span>
+            <div className="lg:col-span-6">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-amber-400 aspect-[16/10]">
+                <Image src="/images/kitab_kuning_study.jpg" alt="Kajian Kitab Kuning" fill className="object-cover" />
               </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* 3. Fiqih, Tasawuf & Tahfizh */}
-        <section id="tahfizh" className="bg-primary-10 text-white rounded-3xl p-8 sm:p-12 border border-primary-8 shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          <div className="lg:col-span-6 space-y-4">
-            <span className="bg-amber-500 text-primary-10 font-extrabold text-xs px-3 py-1 rounded-full">
-              Gramatika Arab & Sorogan
-            </span>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-white">
-              Kitab Fathul Qorib, Ta&apos;lim Muta&apos;allim & Tahfizh
-            </h2>
-            <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-              Pengajian Fiqih ibadah Syafi&apos;iyah melalui Fathul Qorib & Safinatun Najah, pembentukan akhlaq lewat Ta&apos;lim Muta&apos;allim & Nashoihul Ibad, serta bimbingan halaqah hafalan Al-Qur&apos;an harian.
-            </p>
-            <div className="pt-2">
-              <Button asChild className="bg-amber-500 hover:bg-amber-400 text-primary-10 font-bold px-6 py-5">
-                <Link href="/psb">
-                  Daftar Santri Baru Al-Fattah
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Link>
-              </Button>
+        </ScrollReveal>
+        {/* 2. Kitab Kuning */}
+        <ScrollReveal direction="up" delay={100}>
+          <section id="tahfizh" className="bg-primary-10 text-white rounded-3xl p-8 sm:p-12 border border-primary-8 shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-6 space-y-4">
+              <span className="inline-block bg-amber-500 text-primary-10 font-extrabold text-xs px-3 py-1 rounded-full">
+                Program Kitab Kuning
+              </span>
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-white">
+                Kitab Alfiyyah ibn Malik, Jurumiyyah, dan Al-Miftah
+              </h2>
+              <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+                Pembelajaran kitab di Pondok Pesantren Al-Fattah disusun secara berjenjang, mulai dari Kelas Pegon, Al-Miftah, Jurumiyah, Amtsilati, Persiapan Alfiyah, Alfiyah, Ndalem, hingga Kelas Pasca, dengan empat fan ilmu utama: Nahwu-Shorof, Fiqih, Akhlak, dan Hadis. Santri dibimbing membaca dan memahami kitab-kitab klasik (kitab kuning) seperti Al-Miftah, Fathul Qorib, Ta'limul Muta'allim, Arba'in Nawawi, Bidayatul Hidayah, Bulughul Maram, hingga Riyadhus Shalihin dan Fathul Mu'in, menggunakan metode Bandongan, Sorogan, Takrar, dan Hafalan. Melalui program ini, santri tidak hanya mampu membaca kitab gundul dengan tepat, tetapi juga memahami kandungan hukum, adab, dan akhlak yang menjadi ciri khas pendidikan pesantren salaf yang dipadukan dengan pendekatan modern.
+              </p>
             </div>
-          </div>
-          <div className="lg:col-span-6">
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-amber-400 aspect-[16/10]">
-              <Image src="/images/tahfizh.jpg" alt="Tahfizh Qur'an & Kitab" fill className="object-cover" />
+            <div className="lg:col-span-6">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-amber-400 aspect-[16/10]">
+                <Image src="/images/tahfizh.jpg" alt="Tahfizh Qur'an & Kitab" fill className="object-cover" />
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </ScrollReveal>
 
       </div>
+
+        {/* jadwal & ekstrakulikuler */}
+          <ScrollReveal direction="up" delay={100} className="mt-20">
+            <AgendaSection />
+          </ScrollReveal>
     </main>
   );
 }
