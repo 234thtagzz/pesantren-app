@@ -4,8 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import { 
-  BookOpen, 
+import {  
   Phone, 
   Menu, 
   X, 
@@ -13,6 +12,7 @@ import {
   GraduationCap, 
   ChevronRight,
   PhoneCall,
+  DoorClosed,
   UserCheck
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -43,16 +43,26 @@ export function Navbar() {
             </span>
             <span>Pendaftaran Santri Baru Al-Fattah Krapyak Kartasura Resmi Dibuka!</span>
           </div>
-          <div className="flex items-center gap-4 font-medium">
-            <a 
-              href="https://wa.me/62882006454771" 
-              target="_blank" 
-              rel="noreferrer"
-              className="flex items-center gap-1 hover:text-amber-300 transition-colors"
-            >
-              <Phone className="w-3.5 h-3.5 text-amber-400" />
-              <span>Hotline PSB: +62 857-2800-4560</span>
-            </a>
+          <div className="flex flex-row gap-2">
+            <div className="flex items-center gap-4 font-medium">
+              <a 
+                href="https://wa.me/62882006454771" 
+                target="_blank" 
+                rel="noreferrer"
+                className="flex items-center gap-1 hover:text-amber-300 transition-colors"
+              >
+                <Phone className="w-3.5 h-3.5 text-amber-400" />
+                <span>Hotline PSB: +62 857-2800-4560</span>
+              </a>
+            </div>
+            <div className="border border-amber-300 rounded-full p-2">
+              <a 
+              href="/admin"
+              className="flex items-center gap-1 "
+              >
+                <DoorClosed className="w-3.5 h-3.5 text-white hover:text-amber-300 transition-colors"/>
+              </a>
+            </div>
           </div>
         </div>
       </div>

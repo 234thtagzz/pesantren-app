@@ -1,316 +1,263 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { 
   Star, 
-  Quote, 
-  ChevronLeft, 
-  ChevronRight, 
+  Quote,  
   Sparkles, 
-  CheckCircle2, 
-  GraduationCap,
-  Heart,
-  Award,
-  Users
+  CheckCircle2 
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-
-const categories = ["Semua", "Santri Mahasiswa", "Wali Santri", "Alumni"];
 
 const testimonials = [
   {
     id: 1,
-    name: "Ahmad Fauzi, S.Pd.",
-    role: "Alumni Santri Mahasiswa — Lulusan UIN Raden Mas Said Surakarta",
-    category: "Santri Mahasiswa",
-    text: "Tinggal di Pesantren Al-Fattah Krapyak membuat masa kuliah saya sangat berkah. Saya bisa lulus kuliah tepat waktu sambil mendalami kitab Amtsilati dan Alfiyah bersama Dr. KH. Moh. Mahbub.",
-    avatar: "AF",
-    year: "Lulusan 2024",
-    highlight: "Alumni UIN Surakarta",
-    rating: 5,
-    location: "Krapyak, Kartasura"
+    name: "Ulya Darojat, S.Pd.",
+    role: "Guru",
+    text: "Selain ilmu ukhrawi, Al Fattah mengajarkan saya kedisiplinan waktu, ketahanan mental, dan kemampuan beradaptasi di lingkungan yang majemuk. Bagi saya, Al Fattah bukan sekadar tempat belajar agama, melainkan laboratorium kehidupan, tempat saya meramu dan membentuk karakter. Jazakumullah khoiron ahsanal jaza atas semua bimbingan yang telah diberikan. Saat ini saya mengabdikan diri sebagai guru di Kradenan, Grobogan.",
+    avatar: "UD",
+    year: "Alumni 2019",
+    location: "Kradenan, Grobogan"
   },
   {
     id: 2,
-    name: "Dr. H. Hendra Wijaya, Sp.PD",
-    role: "Wali Santri Mukim (Orang Tua Ananda Hilmi)",
-    category: "Wali Santri",
-    text: "Alhamdulillah putra kami menjadi lebih mandiri, shalatnya tepat waktu berjamaah di masjid, dan akhlaqnya sangat santun. Terbukti motto Al-Fattah membimbing santri dengan hati dan keikhlasan.",
-    avatar: "HW",
-    year: "Wali Santri 2025",
-    highlight: "Wali Santri Mukim",
-    rating: 5,
-    location: "Sukoharjo"
+    name: "Lisa Hertiana",
+    role: "Advokat",
+    text: "Saya mengucapkan banyak terima kasih kepada para ustadz dan ustadzah yang telah membimbing, mendidik, dan memberikan ilmu serta nasihat dengan penuh kesabaran dan keikhlasan Selama menempuh pendidikan di Pondok Pesantren Al Fattah. Semoga segala kebaikan dan jasa yang diberikan menjadi amal jariyah dan mendapat balasan terbaik dari Allah SWT.Alhamdulillah Saat ini saya berprofesi sebagai Advokat di Kantor Hukum Hutama-Aniq & Rekan.",
+    avatar: "LH",
+    year: "Alumni 2020",
+    location: "Kantor Hukum Hutama-Aniq & Rekan"
   },
   {
     id: 3,
-    name: "Nurul Annisa, S.Ag.",
-    role: "Alumni Santri Putri — Pengajar Madrasah Diniyah Sukoharjo",
-    category: "Alumni",
-    text: "Lingkungan pesantren di Krapyak sangat aman dan penuh ukhuwah. Pengajian kitab Fathul Qorib dan Ta'lim Muta'allim yang diampu Dr. Hj. Kamila Adnani menjadi bekal hidup yang tak ternilai.",
-    avatar: "NA",
-    year: "Alumni 2023",
-    highlight: "Pengajar Madin",
-    rating: 5,
-    location: "Surakarta"
+    name: "Arif Ahmad",
+    role: "Guru PAI SD",
+    text: "Ilmu dan akhlak adalah dua bekal besar yang saya dapatkan selama di Al Fattah, salah satunya kecintaan saya pada kitab kuning yang tumbuh berkat bimbingan para ustadz dan ustadzah. Terima kasih Ustadz dan Ustadzah Al Fattah atas semua ilmu yang diberikan, termasuk pengalaman berharga saat dilatih menjadi ustadz di pondok. Saat ini saya mengabdi sebagai Guru PAI SD di SDN Jetisharjo.",
+    avatar: "AA",
+    year: "Alumni 2013",
+    location: "SDN Jetisharjo"
   },
   {
     id: 4,
-    name: "Muhammad Rayhan",
-    role: "Santri Mukim Mahasiswa — UMS Surakarta (Teknik Informatika)",
+    name: "Setyorini, S.Sy",
+    role: "Manajer BMT Hira Cabang",
     category: "Santri Mahasiswa",
-    text: "Jadwal ngaji di Al-Fattah sangat pas dengan jam perkuliahan. Suasana kamar Krapyak tenang, didukung WiFi cepat untuk mengerjakan tugas koding dan tugas kuliah akhir.",
-    avatar: "MR",
-    year: "Santri Aktif 2026",
-    highlight: "Mahasiswa UMS",
-    rating: 5,
-    location: "Kartasura"
+    text: "Ilmu, persaudaraan, dan lingkungan pondok yang luar biasa adalah bekal berharga yang saya bawa dari Al Fattah. Terima kasih kepada Bapak dan Ibu Nyai atas semua bimbingan dan ilmunya, juga kepada para ustadz, ustadzah, pengurus, serta seluruh teman-teman. Saat ini saya bekerja sebagai Manajer di BMT Hira Sragen, Cabang Sambirejo.",
+    avatar: "S",
+    year: "Alumni 2009",
+    location: "Sambirejo, Sragen"
   },
   {
     id: 5,
-    name: "Hj. Siti Rahmah, M.Pd.",
-    role: "Wali Santriwati (Orang Tua Ananda Fatimah - Krapyak)",
-    category: "Wali Santri",
-    text: "Kami sangat bersyukur putri kami diajarkan kemandirian dan keikhlasan. Penjagaan pengasuhan Nyai Hj. Kamila Adnani membuat kami tenang melepas putri menuntut ilmu.",
-    avatar: "SR",
-    year: "Wali Santri 2026",
-    highlight: "Wali Santri Putri",
-    rating: 5,
-    location: "Surakarta"
+    name: "Imroatul Mufidah",
+    role: "PNS, Guru SDN Galis 2",
+    text: "Banyak hal saya dapatkan selama di Al Fattah, terutama pembentukan akhlak dan sopan santun, termasuk kesempatan belajar bahasa Jawa yang kaya ragamnya. Terima kasih banyak sudah menerima segala kekurangan saya dan telah mendidik saya dengan sabar. Alhamdulillah, sejak tahun 2019 saya menjadi PNS dan saat ini bertugas di SDN Galis 2, Bangkalan, Madura.",
+    avatar: "IM",
+    year: "Alumni 2014",
+    location: "Bangkalan, Madura"
   },
   {
     id: 6,
-    name: "Ust. Bilfaqih, Lc., M.H.",
-    role: "Alumni Pesantren Al-Fattah — Pengajar & Praktisi Hukum Islam",
-    category: "Alumni",
-    text: "Gemblengan tata bahasa Arab Alfiyah Ibn Malik dan Bahtsul Masail di Al-Fattah menjadi dasar kuat ketika saya menempuh studi hukum Islam dan karir profesional.",
-    avatar: "BF",
-    year: "Alumni 2021",
-    highlight: "Alumni & Pengajar",
-    rating: 5,
-    location: "Semarang"
+    name: "Atik Nurrohmawati, M.Pd",
+    role: "Guru Bahasa Arab MAN 3 Sawit",
+    text: "Kebermanfaatan ilmu dari pesantren serta persahabatan yang terjalin menjadi bekal yang terus saya rasakan hingga kini. Syukron jazilan saya haturkan kepada Mudhirul Ma'had, khususnya Abah KH. M. Mahbub dan Hj. Kamila Adnani beserta keluarga, juga kepada para ustadz, ustadzah, dan pengurus yang telah mendedikasikan diri untuk Al Fattah. Saat ini saya berbahagia dapat menularkan ilmu yang saya peroleh sebagai Guru Bahasa Arab di MAN 3 Sawit, Boyolali.",
+    avatar: "AN",
+    year: "Alumni 2011",
+    location: "Boyolali"
   },
   {
     id: 7,
-    name: "Fatimah Az-Zahra",
-    role: "Santriwati Tahfizh & Mahasiswi UNS Surakarta",
-    category: "Santri Mahasiswa",
-    text: "Mampu menjaga hafalan Al-Qur'an sambil berprestasi akademik di universitas adalah impian saya. Di Al-Fattah, halaqah setoran subuh sangat konsisten dan memotivasi.",
-    avatar: "FA",
-    year: "Santri Aktif 2026",
-    highlight: "Mahasiswi UNS",
-    rating: 5,
-    location: "Solo"
+    name: "Rudini Sisto Astra, S.H",
+    role: "Barista Barokah Group",
+    text: "Kemampuan membaca kitab, mengatur waktu antara pendidikan pondok dan kuliah, serta persahabatan lintas daerah adalah bekal berharga dari Al Fattah. Terima kasih atas waktu dan dedikasi yang diberikan dengan ikhlas dalam mendidik dan mendukung para santri. Saat ini saya bekerja sebagai Barista di Barokah Group, Pangkal Pinang.",
+    avatar: "RS",
+    year: "Alumni 2017 ",
+    location: "Pangkal Pinang"
   },
   {
     id: 8,
-    name: "Bapak Darmawan",
-    role: "Tokoh Masyarakat Krapyak Kartasura",
-    category: "Wali Santri",
-    text: "Keberadaan Pesantren Al-Fattah di Krapyak sangat memberikan keberkahan bagi warga sekitar. Santri-santrinya ramah, santun, dan rajin memakmurkan masjid.",
-    avatar: "BD",
-    year: "Tokoh Krapyak",
-    highlight: "Warga Krapyak",
-    rating: 5,
-    location: "Krapyak Kartasura"
+    name: "Saleh Nur Fadhilah, S.Pd.",
+    role: "Guru SLB-C YPSLB",
+    text: "Selama di Al Fattah saya belajar banyak hal, mulai dari memperkuat keimanan lewat bacaan dzikir, membaca kitab kuning, hingga bersosialisasi dengan baik. Terima kasih untuk seluruh keluarga besar Pondok Pesantren Al Fattah, tempat saya belajar banyak hal, khususnya tentang kesabaran dan toleransi. Saat ini saya mengabdi sebagai Guru di SLB-C YPSLB Gemolong, Sragen.",
+    avatar: "NF",
+    year: "Alumni 2015 ",
+    location: "Gemolong, Sragen"
+  },
+  {
+    id: 9,
+    name: "Muhammad Zada Nasrul Adzim, S.Ag",
+    role: "Wirausaha Swasta",
+    text: "Ilmu pengetahuan yang cukup dan keterampilan yang memadai menjadi bekal saya dari Al Fattah. Terima kasih kepada semua pihak yang telah bekerja sama mewujudkan Al Fattah yang cakap, terampil, dan agamis, terutama kepada Abah Mahbub sekeluarga. Saat ini saya menjalankan usaha sebagai wirausaha swasta di Kranggan, Ambarawa.",
+    avatar: "ZN",
+    year: "Alumni 2021",
+    location: "Wirausaha Swasta"
+  },
+  {
+    id: 10,
+    name: "Nela Oktavia, S.Pd",
+    role: "Guru SMP IT Al Anis",
+    text: "Banyak hal saya dapatkan dari Al Fattah, salah satunya pengalaman berorganisasi dan mengelola kegiatan seperti kurban bersama masyarakat serta pengajian akbar. Tak kalah berharga, saya bertemu banyak teman dengan beragam latar belakang yang menjadikan pengalaman mondok tak terlupakan. Terima kasih untuk Pondok Pesantren Al Fattah yang menjadi saksi perjalanan hidup saya, khususnya kepada Mba Inayah dan Ustadz Atqo. Saat ini saya berprofesi sebagai Guru Swasta di SMP IT Al Anis Kartasura.",
+    avatar: "NO",
+    year: "Alumni 2014",
+    location: "Kartasura, Sukoharjo"
+  },
+  {
+    id: 11,
+    name: "Muhamad Agung Nur Fadli, S.Pd",
+    role: "Mahasiswa",
+    text: "Pengalaman yang berkesan mewarnai setiap detik saya selama di Al Fattah. Terima kasih untuk Pondok Pesantren Al Fattah, khususnya kepada pengasuh, asatidz, pengurus, dan seluruh santri. Saat ini saya sedang menempuh pendidikan sebagai mahasiswa di Bandung.",
+    avatar: "AN",
+    year: "Alumni 2019",
+    location: "Bandung"
+  },
+  {
+    id: 12,
+    name: "Hamida Zahra, S.H.",
+    role: "Human Resource",
+    text: "Wawasan ilmu, persahabatan, kebersamaan, dan pelajaran hidup adalah bekal yang saya bawa dari Al Fattah. Terima kasih Al Fattah sudah menjadi bagian dari perjalanan hidup saya dan memberikan banyak hal yang bermanfaat. Saat ini saya bekerja sebagai Human Resource di PT. Mitracomm Ekasarana.",
+    avatar: "HA",
+    year: "Alumni 2019",
+    location: "PT. Mitracomm Ekasarana"
+  },
+  {
+    id: 13,
+    name: "Rohana Ashari, S.Pd.",
+    role: "Guru TK Darunnajah",
+    text: "Alhamdulillah, saya berkesempatan mengkhatamkan kitab Nahwu Shorof Amtsilati jilid 1–5, ditambah Jurumiyah dan sedikit Nadhom Alfiyah, serta berbagai kitab lainnya. Syukron katsiron jazakumullah ahsanal jaza kepada Abah Kyai Mahbub, Ibu Nyai Kamila beserta keluarga, serta seluruh asatidz dan pengurus atas ilmu dan bimbingannya. Setelah lulus tahun 2021, saya sempat menjadi guru tahfidz, agama, dan TU di sebuah MTs di Ngawi selama kurang lebih tiga tahun, dan saat ini saya mengabdi sebagai Guru TK di TK Darunnajah, Debong Kulon, Kota Tegal.",
+    avatar: "RA",
+    year: "Alumni 2018/2019",
+    location: "Debong Kulon, Kota Tegal"
+  },
+  {
+    id: 14,
+    name: "Nufi Asii Fairuziyyah, S.Psi",
+    role: "Asisten Psikolog & Leader of HR Development",
+    text: "Terima kasih kepada Abah Yai dan Ibu Nyai yang telah mendidik saya dengan disiplin dan kecintaan pada ilmu. Pesan beliau selalu saya pegang: manfaatkan kompetensimu, lakukan dengan hati, dan tetap di jalan Allah. Berkat doa beliau, saya lulus cumlaude, tepat waktu, dan berhasil menerbitkan buku tunggal. Saat ini saya berkiprah sebagai presenter dan pembicara nasional, sekaligus menjadi asisten psikolog dan leader of HR development secara bersamaan. nikmati masa sulit di pondok, karena ketekunan menuju akhirat akan membawa kesuksesan di dunia.",
+    avatar: "NA",
+    year: "Alumni 2021",
+    location: ""
+  },
+  {
+    id: 15,
+    name: "Pipit Wahyuni Putri, S.H",
+    role: "Pengajar Bimbel (Wirausaha Mandiri)",
+    text: "Bagi saya, Al Fattah adalah rumah kedua. Selama empat tahun, saya tidak hanya dibimbing soal keagamaan, tetapi juga hal-hal baik lainnya seperti belajar, disiplin, kemandirian, dan media. Yang paling berkesan, saya berkesempatan belajar desain dan videografi.Saat ini saya menjadi pengajar bimbel yang saya kelola sendiri dari rumah, dan alhamdulillah bimbel ini telah memiliki lebih dari 50 murid. Bismillah, saya ingin terus mengembangkan bimbel ini dengan arahan Abah dan Ibu Nyai, karena ilmu media yang saya pelajari di Al Fattah tidak pernah sia-sia.",
+    avatar: "PW",
+    year: "Alumni 2020",
+    location: ""
   }
 ];
 
+// Triplikasi data untuk tak terbatas
+const infiniteTestimonials = [...testimonials, ...testimonials, ...testimonials];
+
 export function TestimoniSection() {
-  const [activeCategory, setActiveCategory] = useState("Semua");
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-  const filteredTestimonials = activeCategory === "Semua" 
-    ? testimonials 
-    : testimonials.filter(t => t.category === activeCategory);
-
-  // Reset index when category changes
+  // Set posisi scroll ke tengah saat awal render tanpa animasi
   useEffect(() => {
-    setCurrentIndex(0);
-  }, [activeCategory]);
+    if (scrollContainerRef.current) {
+      const container = scrollContainerRef.current;
+      const singleSetWidth = container.scrollWidth / 3;
+      container.style.scrollBehavior = "auto";
+      container.scrollLeft = singleSetWidth;
+    }
+  }, []);
 
-  const nextTestimonial = () => {
-    setCurrentIndex((prev) => (prev + 1) % filteredTestimonials.length);
+  // Handler pergantian posisi seamless
+  const handleScroll = () => {
+    if (!scrollContainerRef.current) return;
+    const container = scrollContainerRef.current;
+    const singleSetWidth = container.scrollWidth / 3;
+
+    // Paksa perilaku scroll jadi "auto" (instan) saat me-reset posisi
+    container.style.scrollBehavior = "auto";
+
+    // Jika mendekati batas paling kiri (set ke-1), reset ke tengah (set ke-2)
+    if (container.scrollLeft <= 5) {
+      container.scrollLeft += singleSetWidth;
+    } 
+    // Jika mendekati batas paling kanan (set ke-3), reset ke tengah (set ke-2)
+    else if (container.scrollLeft >= singleSetWidth * 2 - 5) {
+      container.scrollLeft -= singleSetWidth;
+    }
   };
 
-  const prevTestimonial = () => {
-    setCurrentIndex((prev) => (prev - 1 + filteredTestimonials.length) % filteredTestimonials.length);
+  // Fungsi scroll tombol panah
+  const scroll = (direction: "left" | "right") => {
+    if (scrollContainerRef.current) {
+      const container = scrollContainerRef.current;
+      // Aktifkan scroll smooth khusus saat tombol diklik
+      container.style.scrollBehavior = "smooth";
+      const scrollAmount = 380;
+      container.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+      });
+    }
   };
-
-  const currentItem = filteredTestimonials[currentIndex] || filteredTestimonials[0];
 
   return (
     <section className="py-24 bg-gradient-to-b from-primary-10 via-slate-950 to-primary-10 text-white relative overflow-hidden">
-      {/* Background Lighting & Geometric Mesh Glow */}
+      {/* Background Lighting & Glow */}
       <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-amber-500/10 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-0 left-10 w-[450px] h-[450px] bg-primary-6/10 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-10">
         
-        {/* Header & Category Switcher */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-primary-8/80 pb-8">
+        {/* Header & Navigasi Panah */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 border-b border-primary-8/80 pb-8 items-center">
           <div className="space-y-3 max-w-2xl">
             <span className="inline-flex items-center gap-1.5 text-amber-400 font-extrabold text-xs tracking-wider uppercase bg-primary-9/80 px-3.5 py-1.5 rounded-full border border-amber-500/30">
               <Sparkles className="w-3.5 h-3.5 animate-pulse" />
               Suara Santri & Pengalaman Wali
             </span>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-              Apresiasi & Testimoni Santri Al-Fattah
+              Testimoni Alumni Santri <span className="whitespace-nowrap">Al-Fattah</span> 
             </h2>
             <p className="text-slate-300 text-sm sm:text-base">
-              Pengalaman otentik dalam membentuk karakter, kajian kitab kuning turats, dan keikhlasan menuntut ilmu di Krapyak Kartasura.
+              Pengalaman Berkata dalam kehidupan yang dijalani Para Alumni Al-Fattah.
             </p>
           </div>
 
-          {/* Category Filter Pills */}
-          <div className="flex flex-wrap items-center gap-2">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold transition-all duration-300 cursor-pointer ${
-                  activeCategory === cat
-                    ? "bg-amber-500 text-primary-10 shadow-lg shadow-amber-500/20 scale-105"
-                    : "bg-primary-9/60 text-slate-300 hover:bg-primary-8 border border-primary-8"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
         </div>
 
-        {/* Ultra-Premium Spotlight Showcase Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          
-          {/* Left Column: Spotlight Quote Card */}
-          <div className="lg:col-span-8">
-            <div className="relative bg-gradient-to-br from-primary-9/90 via-primary-10/95 to-slate-950 border border-amber-500/30 rounded-3xl p-8 sm:p-12 shadow-2xl backdrop-blur-xl min-h-[380px] flex flex-col justify-between overflow-hidden group">
-              
-              {/* Giant Metallic Background Quote Watermark */}
-              <Quote className="w-36 h-36 text-amber-500/10 absolute -top-4 -right-4 pointer-events-none group-hover:scale-110 transition-transform duration-700" />
-              
-              <div className="space-y-6 relative z-10">
-                {/* Top Badge & Rating Row */}
-                <div className="flex flex-wrap items-center justify-between gap-3">
-                  <div className="flex items-center gap-2">
-                    <span className="bg-amber-500/20 text-amber-300 text-xs font-extrabold px-3 py-1 rounded-full border border-amber-500/40">
-                      {currentItem.highlight}
-                    </span>
-                    <span className="bg-primary-9/80 text-primary-3 text-xs font-semibold px-3 py-1 rounded-full border border-primary-7">
-                      📍 {currentItem.location}
-                    </span>
-                  </div>
+        {/* Track Testimoni Scroll Horizontal (Fitur Seamless / No Jitter) */}
+        <div 
+          ref={scrollContainerRef}
+          onScroll={handleScroll}
+          className="flex gap-6 overflow-x-auto pb-6 pt-2"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
+          {infiniteTestimonials.map((item, index) => (
+            <div
+              key={`${item.id}-${index}`}
+              className="shrink-0 w-[300px] sm:w-[380px] bg-gradient-to-br from-primary-9/90 via-primary-10/95 to-slate-950 border border-amber-500/30 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-xl flex flex-col justify-between relative overflow-hidden group hover:border-amber-400/60 transition-all duration-300 select-none"
+            >
+              {/* Background Quote Watermark */}
+              <Quote className="w-28 h-28 text-amber-500/10 absolute -top-3 -right-3 pointer-events-none group-hover:scale-110 transition-transform duration-500" />
 
-                  <div className="flex items-center gap-1.5 bg-primary-10/90 px-3 py-1 rounded-full border border-primary-8 text-amber-400">
-                    {[...Array(currentItem.rating)].map((_, i) => (
-                      <Star key={i} className="w-3.5 h-3.5 fill-amber-400" />
-                    ))}
-                    <span className="text-xs font-extrabold text-white ml-1">5.0</span>
-                  </div>
-                </div>
-
-                {/* Main Quote Content */}
-                <blockquote className="text-lg sm:text-2xl font-medium text-slate-100 leading-relaxed italic">
-                  &ldquo;{currentItem.text}&rdquo;
+              <div className="space-y-4 relative z-10">
+                {/* Isi Kutipan Testimoni */}
+                <blockquote className="text-sm sm:text-base font-medium text-slate-100 leading-relaxed italic">
+                  &ldquo;{item.text}&rdquo;
                 </blockquote>
               </div>
 
-              {/* Author & Verification Footer */}
-              <div className="pt-8 border-t border-primary-8/80 flex flex-col sm:flex-row sm:items-center justify-between gap-4 relative z-10">
-                <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-400 to-amber-600 text-primary-10 font-extrabold text-xl flex items-center justify-center shadow-lg shadow-amber-500/20 border-2 border-amber-300 shrink-0">
-                    {currentItem.avatar}
-                  </div>
-                  <div>
-                    <h3 className="font-extrabold text-lg text-white flex items-center gap-2">
-                      {currentItem.name}
-                      <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
-                    </h3>
-                    <p className="text-xs text-amber-300 font-semibold">{currentItem.role}</p>
-                    <p className="text-[11px] text-slate-400 mt-0.5">{currentItem.year}</p>
-                  </div>
+              {/* Identitas Penulis Testimoni */}
+              <div className="pt-6 mt-6 border-t border-primary-8/80 flex items-center gap-3.5 relative z-10">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 text-primary-10 font-extrabold text-lg flex items-center justify-center shadow-lg shadow-amber-500/20 border-2 border-amber-300 shrink-0">
+                  {item.avatar}
                 </div>
-
-                {/* Carousel Controls */}
-                <div className="flex items-center gap-2 self-end sm:self-center">
-                  <button
-                    onClick={prevTestimonial}
-                    className="w-10 h-10 rounded-xl bg-primary-9/80 hover:bg-amber-500 hover:text-primary-10 text-white flex items-center justify-center border border-primary-7 transition-all cursor-pointer"
-                    aria-label="Testimoni Sebelumnya"
-                  >
-                    <ChevronLeft className="w-5 h-5" />
-                  </button>
-                  <span className="text-xs font-bold text-slate-400 px-2">
-                    {currentIndex + 1} / {filteredTestimonials.length}
-                  </span>
-                  <button
-                    onClick={nextTestimonial}
-                    className="w-10 h-10 rounded-xl bg-primary-9/80 hover:bg-amber-500 hover:text-primary-10 text-white flex items-center justify-center border border-primary-7 transition-all cursor-pointer"
-                    aria-label="Testimoni Selanjutnya"
-                  >
-                    <ChevronRight className="w-5 h-5" />
-                  </button>
+                <div className="overflow-hidden">
+                  <h3 className="font-extrabold text-sm text-white flex items-center gap-1.5 truncate">
+                    <span className="truncate">{item.name}</span>
+                    <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
+                  </h3>
+                  <p className="text-[11px] text-amber-300 font-semibold truncate">{item.role}</p>
+                  <p className="text-[10px] text-slate-400 mt-0.5">{item.year} - {item.location}</p>
                 </div>
               </div>
-
             </div>
-          </div>
-
-          {/* Right Column: Interactive Thumbnail Selector List */}
-          <div className="lg:col-span-4 space-y-3">
-            <div className="text-xs font-bold uppercase tracking-wider text-amber-400 px-1 flex items-center gap-2">
-              <Users className="w-4 h-4" />
-              Pilih Testimoni Santri / Wali:
-            </div>
-
-            <div className="space-y-3 max-h-[380px] overflow-y-auto pr-1 custom-scrollbar">
-              {filteredTestimonials.map((item, idx) => {
-                const isActive = idx === currentIndex;
-                return (
-                  <button
-                    key={item.id}
-                    onClick={() => setCurrentIndex(idx)}
-                    className={`w-full text-left p-4 rounded-2xl border transition-all duration-300 flex items-center gap-3 cursor-pointer ${
-                      isActive
-                        ? "bg-amber-500/20 border-amber-400 text-white shadow-md translate-x-1"
-                        : "bg-primary-10/60 border-primary-8/80 text-slate-300 hover:bg-primary-9/60 hover:text-white"
-                    }`}
-                  >
-                    <div className={`w-9 h-9 rounded-xl font-extrabold text-xs flex items-center justify-center shrink-0 ${
-                      isActive ? "bg-amber-400 text-primary-10" : "bg-primary-9 text-slate-300"
-                    }`}>
-                      {item.avatar}
-                    </div>
-                    <div className="overflow-hidden flex-1">
-                      <div className="font-extrabold text-xs text-white truncate">{item.name}</div>
-                      <div className="text-[11px] text-amber-300/90 truncate">{item.highlight}</div>
-                    </div>
-                    {isActive && (
-                      <span className="w-2 h-2 rounded-full bg-amber-400 shrink-0 animate-ping" />
-                    )}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-        </div>
-
-        {/* Counter Summary Strip */}
-        <div className="bg-primary-9/40 border border-primary-8/80 rounded-3xl p-6 sm:p-8 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
-          <div className="space-y-1">
-            <div className="text-2xl sm:text-3xl font-extrabold text-amber-300">4.9 / 5.0 ⭐</div>
-            <div className="text-xs text-slate-300">Tingkat Kepuasan Santri & Wali</div>
-          </div>
-          <div className="space-y-1">
-            <div className="text-2xl sm:text-3xl font-extrabold text-white">100% Khidmah</div>
-            <div className="text-xs text-slate-300">Pembimbingan Akhlaq & Kitab Turats</div>
-          </div>
-          <div className="space-y-1">
-            <div className="text-2xl sm:text-3xl font-extrabold text-primary-4">2007 - Sekarang</div>
-            <div className="text-xs text-slate-300">Pengabdian Yayasan Insan Kamil Krapyak</div>
-          </div>
+          ))}
         </div>
 
       </div>

@@ -10,11 +10,11 @@ import {
   RefreshCw,
   UserCheck,
   Download,
-  LogOut,
-  ShieldCheck,
+  ArrowLeft,
   Trash2
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 interface Pendaftar {
   id: string;
@@ -145,19 +145,19 @@ export default function AdminPsbPage() {
   return (
     <div className="min-h-screen bg-slate-50 p-6 sm:p-10 space-y-6">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-        <div>
-          <div className="flex items-center gap-2">
-            <span className="text-primary-7 font-bold text-xs uppercase bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200 flex items-center gap-1">
-              <ShieldCheck className="w-3.5 h-3.5" /> Panel Admin Terverifikasi
-            </span>
+          <div className="flex items-center gap-3">
+            <Button asChild variant="outline" size="sm" className="rounded-xl">
+              <Link href="/admin"><ArrowLeft className="w-4 h-4 mr-1" /> Dashboard</Link>
+            </Button>
+            <div>
+              <h1 className="text-2xl font-extrabold text-slate-900 mt-2">
+                Data Pendaftaran Santri Baru
+              </h1>
+              <p className="text-slate-500 text-xs sm:text-sm mt-1">
+                Daftar calon santri beserta seluruh berkas terunggah.
+              </p>
+            </div>
           </div>
-          <h1 className="text-2xl font-extrabold text-slate-900 mt-2">
-            Data Pendaftaran Santri Baru
-          </h1>
-          <p className="text-slate-500 text-xs sm:text-sm mt-1">
-            Daftar calon santri beserta seluruh berkas terunggah.
-          </p>
-        </div>
 
         <div className="flex items-center gap-2">
           <Button 
@@ -167,15 +167,6 @@ export default function AdminPsbPage() {
           >
             <RefreshCw className={`w-4 h-4 ${loading ? "animate-spin" : ""}`} />
             Refresh
-          </Button>
-
-          <Button 
-            onClick={handleLogout} 
-            variant="destructive" 
-            className="flex items-center gap-2 bg-red-600 hover:bg-red-700 font-bold text-white"
-          >
-            <LogOut className="w-4 h-4" />
-            Keluar (Logout)
           </Button>
         </div>
       </div>
